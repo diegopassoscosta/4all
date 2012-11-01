@@ -18,6 +18,8 @@ import static org.junit.Assert.*;
  */
 public class ConexaoTest {
     
+    protected Conexao instance = new Conexao();
+    
     public ConexaoTest() {
     }
     
@@ -30,7 +32,13 @@ public class ConexaoTest {
     }
     
     @Before
-    public void setUp() {
+    public void setUp() { 
+        instance.setNomeDoHost("localhost");
+        instance.setTipoDeBanco("derby");
+        instance.setBanco("conexaocalculo");
+        instance.setPortaDoHost("1527");
+        instance.setUsuario("adm");
+        instance.setSenha("123123");
     }
     
     @After
@@ -41,16 +49,57 @@ public class ConexaoTest {
      * Test of retornaConsulta method, of class Conexao.
      */
     @Test
-    public void testRetornaConsulta() throws Exception {
-        System.out.println("retornaConsulta");
-        String consulta = "";
-        Conexao instance = new Conexao();
-        ResultSet expResult = null;
-        ResultSet result = instance.retornaConsulta(consulta);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testConsultaBanco() throws Exception {
+        System.out.println("Consulta Dados no Banco");
+        String consulta = "select * from resultado";
+        instance.conectaBanco();
+        ResultSet result = instance.consulta(consulta);
+        assertNotNull(result);    
     }
-
-   
+    
+    /**
+     * Test of retornaConsulta method, of class Conexao.
+     */
+    @Test
+    public void testConectaAoBanco() throws Exception {
+        System.out.println("Conecta ao Banco");
+        boolean result = instance.conectaBanco();
+        assertTrue(result);     
+    }
+    
+    /**
+     * Test of retornaConsulta method, of class Conexao.
+     */
+    @Test
+    public void insereDadosNoBanco() throws Exception {
+        System.out.println("Insere dados no banco");
+        String consulta = "insert into adm.resultado (id) values (12)";
+        instance.conectaBanco();
+        int resultado = instance.inseri(consulta);
+        assertEquals(1, resultado);    
+    }
+    
+    /**
+     * Test of retornaConsulta method, of class Conexao.
+     */
+    @Test
+    public void atualizaDadosNoBanco() throws Exception {
+        System.out.println("Atualiza dados no banco");
+        String consulta = "update adm.resultado set id=13 where id=12";
+        instance.conectaBanco();
+        int resultado = instance.atualize(consulta);
+        assertEquals(1, resultado);    
+    }
+    
+    /**
+     * Test of retornaConsulta method, of class Conexao.
+     */
+    @Test
+    public void deletaDadosNoBanco() throws Exception {
+        System.out.println("Deleta dados no banco");
+        String consulta = "delete from resultado";
+        instance.conectaBanco();
+        int resultado = instance.delete(consulta);
+        assertEquals(1, resultado);    
+    } 
 }

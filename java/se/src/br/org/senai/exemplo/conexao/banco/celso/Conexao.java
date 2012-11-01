@@ -18,40 +18,80 @@ public class Conexao {
 
     private Connection con;
     private Statement stm;
+    private String tipoDeBanco = ".";
     private String nomeDoHost;
-    private int portaDoHost;
+    private String portaDoHost;
     private String usuario;
     private String senha;
+    private String banco;
     
     private final String driverDerby = "org.apache.derby.jdbc.EmbeddedDriver";
     private final String driverMysql = "com.mysql.jdbc.Driver";
-    private final String driverPostgree = "org.postgresql.Driver";
-    //private String urlDerby ="jdbc:derby://localhost:1527/Cadastro"+usuario+senha;  
-    private String urlMySql = "jdbc:mysql://localhost:3306/Cadastro";
-    private String urlDerby = "jdbc:derby://localhost:1527/Cadastro";
-    private String urlPostGree="jdbc:Postgree://localhost:1527/Cadastro";
-    //con = DriverManager.getConnection("jdbc:derby://localhost:1527/Cadastro","adm","123123");
-
+    private final String driverPostgres = "org.postgresql.Driver";  
+    private final String DERBYPORT = "3306";
+    private final String MSQLPORT = "3306";
+  
     /**
      * Escolhe um banco de dados
      * @param bancoEscolhido
      * @throws ClassNotFoundException
      * @throws SQLException 
      */
-    public void escolhaBanco(String bancoEscolhido) throws ClassNotFoundException, SQLException {
-        if (bancoEscolhido.equalsIgnoreCase("derby")) {
-            carregaDriver(bancoEscolhido);
+    public boolean conectaBanco() throws ClassNotFoundException, SQLException {
+        carregaDriver();
+        return true;
+    }
+    
+    private void carregaDriver() throws ClassNotFoundException, SQLException {
+        if (this.tipoDeBanco.equalsIgnoreCase("MySQL")) {
+            Class.forName(this.driverMysql);
+            con = DriverManager.getConnection("jdbc:mysql://"+this.nomeDoHost+":"+this.portaDoHost+"/"+this.banco+","+this.usuario+","+this.senha+"");
+            
         }
+
+        if (this.tipoDeBanco.equalsIgnoreCase("derby")) {
+            Class.forName(this.driverDerby);
+            con = DriverManager.getConnection("jdbc:derby://"+this.nomeDoHost+":"+this.portaDoHost+"/"+this.banco+"",""+this.usuario+"",""+this.senha+"");      
+        }
+
+        if (this.tipoDeBanco.equalsIgnoreCase("Postgres")) {
+           Class.forName(this.driverPostgres);
+           con = DriverManager.getConnection("jdbc:postgres://"+this.nomeDoHost+":"+this.portaDoHost+"/"+this.banco+","+this.usuario+","+this.senha+"");
+ 
+       }
+        stm = con.createStatement();
     }
 
     /**
      * @param consulta
      * @return uma consulta
      */
-    public ResultSet retornaConsulta(String consulta) throws SQLException{
-       
-        return  stm.executeQuery(consulta);
-        
+    public ResultSet consulta(String consulta) throws SQLException{
+        return  stm.executeQuery(consulta);  
+    }
+    
+    /**
+     * @param update
+     * @return o resultaod da inserção
+     */
+    public int inseri(String inseri) throws SQLException{
+        return  stm.executeUpdate(inseri);  
+    }
+    
+    /**
+     * @param delete
+     * @return o resultaod da inserção
+     */
+    public int delete(String delete) throws SQLException{
+        return  stm.executeUpdate(delete);  
+    }
+    
+    /**
+     * @param atualiza
+     * @return o resultaod da inserção
+     */
+    public int atualize(String atualiza) throws SQLException{
+        return  stm.executeUpdate(atualiza);  
     }
     
     /**
@@ -72,14 +112,14 @@ public class Conexao {
     /**
      * @return a porta do host
      */
-    public int getPortaDoHost() {
+    public String getPortaDoHost() {
         return portaDoHost;
     }
 
     /**
      * @param portaDoHost ajusta a porta do host
      */
-    public void setPortaDoHost(int portaDoHost) {
+    public void setPortaDoHost(String portaDoHost) {
         this.portaDoHost = portaDoHost;
     }
 
@@ -91,7 +131,7 @@ public class Conexao {
     }
 
     /**
-     * @param unsuario ajusta o nome do usuario
+     * @param usuario ajusta o nome do usuario
      */
     public void setUsuario(String usuario) {
         this.usuario = usuario;
@@ -109,31 +149,33 @@ public class Conexao {
      */
     public void setSenha(String senha) {
         this.senha = senha;
+    }   
+
+    /**
+     * @return o banco
+     */
+    public String getBanco() {
+        return banco;
     }
 
-    private void carregaDriver(String banco) throws ClassNotFoundException, SQLException {
-        if (banco.equalsIgnoreCase("mySQL")) {
-            Class.forName(this.driverMysql);
-            con = DriverManager.getConnection(this.urlMySql);
+    /**
+     * @param banco a ser ajustado
+     */
+    public void setBanco(String banco) {
+        this.banco = banco;
+    }
 
-            stm = con.createStatement();
-        }
+    /**
+     * @return the tipoDeBanco
+     */
+    public String getTipoDeBanco() {
+        return tipoDeBanco;
+    }
 
-        if (banco.equalsIgnoreCase("Derby")) {
-            Class.forName(this.driverDerby);
-            //this.urlDerby = this.urlDerby+ "," + "\"" +this.usuario + "\"" +"," + "\"" +this.senha+ "\"";
-            con = DriverManager.getConnection("jdbc:derby://localhost:1527/Cadastro",""+this.usuario+"",""+this.senha+"");
-
-            //significado disso abaixo
-            stm = con.createStatement();
-        }
-
-        if (banco.equalsIgnoreCase("PostGree")) {
-            Class.forName(this.driverPostgree);
-            con = DriverManager.getConnection(this.urlPostGree);
-
-            //significado disso abaixo
-            stm = con.createStatement();
-        }
+    /**
+     * @param tipoDeBanco the tipoDeBanco to set
+     */
+    public void setTipoDeBanco(String tipoDeBanco) {
+        this.tipoDeBanco = tipoDeBanco;
     }
 }

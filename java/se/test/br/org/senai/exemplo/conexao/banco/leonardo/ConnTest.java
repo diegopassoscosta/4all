@@ -27,6 +27,8 @@ public class ConnTest {
     protected String esquema = "conexaocalculo";
     protected String usuario = "adm";
     protected String senha = "123123";
+    protected Conn instance = new Conn();
+        
 
     public ConnTest() {
     }
@@ -40,7 +42,13 @@ public class ConnTest {
     }
 
     @Before
-    public void setUp() {
+    public void setUp() throws NaoEncontradoTipoDeBanco {   
+        instance.setUser(usuario);
+        instance.setPassword(senha);
+        instance.setPort(Integer.parseInt(porta));
+        instance.setHost(host);
+        instance.setName(esquema);
+        instance.selectDB(banco);
     }
 
     @After
@@ -53,17 +61,8 @@ public class ConnTest {
     @Test
     public void testSelectDB() throws ClassNotFoundException, SQLException, NaoEncontradoTipoDeBanco {
         System.out.println("Open");
-        Conn instance = new Conn();
-
-        instance.setUser(usuario);
-        instance.setPassword(senha);
-        instance.setPort(Integer.parseInt(porta));
-        instance.setHost(host);
-        instance.setName(esquema);
         String result = instance.selectDB(banco);
-
         assertNotNull(result);
-
     }
 
     /**
@@ -72,19 +71,10 @@ public class ConnTest {
     @Test
     public void testOpen() throws ClassNotFoundException, SQLException, NaoEncontradoTipoDeBanco {
         System.out.println("Open");
-        Conn instance = new Conn();
-        
-        instance.setUser(usuario);
-        instance.setPassword(senha);
-        instance.setPort(Integer.parseInt(porta));
-        instance.setHost(host);
-        instance.setName(esquema);
-        instance.selectDB(banco);
         String url = "jdbc:" + instance.getNomeDb() + "://" + instance.getHost() + ":" + instance.getPort() + "/" + instance.getName();
         assertEquals("jdbc:derby://localhost:1527/conexaocalculo", url);
         Connection result = instance.Open();
         assertNotNull(result);
-
     }
 
     /**
@@ -93,11 +83,8 @@ public class ConnTest {
     @Test(expected = NaoEncontradoTipoDeBanco.class)
     public void testOpenFail() throws ClassNotFoundException, SQLException, NaoEncontradoTipoDeBanco {
         System.out.println("Open");
-        Conn instance = new Conn();
         instance.selectDB("derbyasdasqef2f2");
         instance.Open();
-
-
     }
 
     /**
@@ -106,18 +93,8 @@ public class ConnTest {
     @Test
     public void testInsert() throws NaoEncontradoTipoDeBanco, NaoFoiInformandaNenhumaQueryException {
         System.out.println("Insert");
-        Conn instance = new Conn();
-        
         int retornoExperado = 1;
-
-        instance.setUser(usuario);
-        instance.setPassword(senha);
-        instance.setPort(Integer.parseInt(porta));
-        instance.setHost(host);
-        instance.setName(esquema);
-        instance.selectDB(banco);
         instance.setQuery("insert into adm.resultado (id) values (12)");
-
         int resultado = instance.Insert();
         assertEquals(retornoExperado, resultado);
     }
@@ -127,19 +104,9 @@ public class ConnTest {
      */
     @Test
     public void testUpdate() throws NaoEncontradoTipoDeBanco, NaoFoiInformandaNenhumaQueryException, SQLException {
-        System.out.println("Update");
-        Conn instance = new Conn();
-        
+        System.out.println("Update"); 
         int retornoExperado = 1;
         int resultado = 0;
-
-        instance.setUser(usuario);
-        instance.setPassword(senha);
-        instance.setPort(Integer.parseInt(porta));
-        instance.setHost(host);
-        instance.setName(esquema);
-        instance.selectDB(banco);
-
         instance.setQuery("update adm.resultado set id=13 where id=12");
         resultado = instance.Update();
         assertEquals(retornoExperado, resultado);
@@ -152,18 +119,8 @@ public class ConnTest {
     @Test
     public void testDelete() throws NaoEncontradoTipoDeBanco, NaoFoiInformandaNenhumaQueryException {
         System.out.println("Delete");
-        Conn instance = new Conn();
-        
         int retornoExperado = 1;
-        int resultado = 0;
-
-        instance.setUser(usuario);
-        instance.setPassword(senha);
-        instance.setPort(Integer.parseInt(porta));
-        instance.setHost(host);
-        instance.setName(esquema);
-        instance.selectDB(banco);
-
+        int resultado = 0;      
         instance.setQuery("delete from resultado");
         resultado = instance.Delete();
         assertEquals(retornoExperado, resultado);
@@ -175,18 +132,8 @@ public class ConnTest {
      */
     @Test
     public void testSelect() throws NaoEncontradoTipoDeBanco, NaoFoiInformandaNenhumaQueryException {
-        System.out.println("Select");
-        Conn instance = new Conn();
-        
+        System.out.println("Select");      
         ResultSet resultado = null;
-
-        instance.setUser(usuario);
-        instance.setPassword(senha);
-        instance.setPort(Integer.parseInt(porta));
-        instance.setHost(host);
-        instance.setName(esquema);
-        instance.selectDB(banco);
-
         instance.setQuery("select * from resultado");
         resultado = instance.Select();
         assertNotNull(resultado);

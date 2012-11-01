@@ -6,6 +6,7 @@ package br.org.senai.exemplo.conexao.banco.gelton;
 
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -18,6 +19,8 @@ import static org.junit.Assert.*;
  * @author gabriel
  */
 public class ConnectionTest {
+    
+    protected Connection instance = new Connection();
     
     public ConnectionTest() {
     }
@@ -32,6 +35,12 @@ public class ConnectionTest {
     
     @Before
     public void setUp() {
+        
+        instance.setHost("localhost");
+        instance.setType("derby");
+        instance.setSchema("conexaocalculo");
+        instance.setUser("adm");
+        instance.setPass("123123");
     }
     
     @After
@@ -42,25 +51,22 @@ public class ConnectionTest {
      * Test of selecionarDb method, of class Connection.
      */
     @Test
-    public void testSelecionarDb() throws Exception {
+    public void testSelecionarDb() throws ClassNotFoundException {
         System.out.println("selecionarDb");
-        String db = "";
-        Connection instance = new Connection();
+        String db = "derby";
         instance.selecionarDb(db);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
      * Test of abrirConexao method, of class Connection.
      */
     @Test
-    public void testAbrirConexao() throws Exception {
+    public void testAbrirConexao() throws SQLException, ClassNotFoundException {
         System.out.println("abrirConexao");
-        Connection instance = new Connection();
+        String db = "derby";
+        instance.selecionarDb(db);
         instance.abrirConexao();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -70,9 +76,8 @@ public class ConnectionTest {
     public void testInserirDb() throws Exception {
         System.out.println("inserirDb");
         String query = "";
-        Connection instance = new Connection();
-        boolean expResult = false;
-        boolean result = instance.inserirDb(query);
+        int expResult = 1;
+        int result = instance.inserirDb(query);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -85,7 +90,6 @@ public class ConnectionTest {
     public void testRetornaResultado() throws Exception {
         System.out.println("retornaResultado");
         String consulta = "";
-        Connection instance = new Connection();
         ResultSet expResult = null;
         ResultSet result = instance.retornaResultado(consulta);
         assertEquals(expResult, result);

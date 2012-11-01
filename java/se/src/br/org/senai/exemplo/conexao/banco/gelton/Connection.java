@@ -23,7 +23,6 @@ public class Connection {
     private String pass;
     private String type;
     private String query;
-    private String result;
     private java.sql.Connection con;
     private Statement stm;
     
@@ -56,13 +55,14 @@ public class Connection {
         Class.forName(this.getType());
     }
     
-    public void abrirConexao() throws SQLException{
+    public java.sql.Connection abrirConexao() throws SQLException{
         con = DriverManager.getConnection(getHost(), getUser(), getPass());
+        return con;
     }
     
-    public boolean inserirDb(String query) throws SQLException{
+    public int inserirDb(String query) throws SQLException{
         stm = con.createStatement();
-        return stm.execute(query);
+        return stm.executeUpdate(query);
         
     }
     
