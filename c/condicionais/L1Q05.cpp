@@ -19,7 +19,7 @@ int main(void){
     }else if (valor_pago > valor_compra){
           printf("o troco e de: %d\n", valor_pago - valor_compra);
     }else{
-          printf("valor exato\n");
+          printf("valor Exato\n");
     }
     
     system("PAUSE");
