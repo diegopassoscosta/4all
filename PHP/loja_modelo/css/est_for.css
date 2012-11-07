@@ -1,0 +1,22 @@
+/* CSS Gerencia - Estrutura */
+
+#Est_For_001{
+	width:527px;
+	height:28px;
+	background-image:url(../capa/imagens/css/bkg_top_for.gif);
+	}
+	#Est_For_001_001{
+		width:517px;
+		height:23px;
+		padding-top:5px;
+		margin-left:5px;
+		margin-right:5px;
+		}
+#Est_For_002{
+	width:525px;
+	_width:527px;
+	background-color:#f5f5f5;
+	border-style:solid;
+	border-width:1px;
+	border-color:#146683;
+	}
