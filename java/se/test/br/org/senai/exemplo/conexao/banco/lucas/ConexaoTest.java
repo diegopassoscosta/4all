@@ -37,21 +37,7 @@ public class ConexaoTest {
     public void tearDown() {
     }
 
-    /**
-     * Test of setIdade method, of class Conexao.
-     */
-    @Test
-    public void testSetIdade() throws Exception {
-        System.out.println("setIdade");
-        String nome = "";
-        Integer idade = null;
-        Conexao instance = new Conexao();
-        int expResult = 0;
-        int result = instance.setIdade(nome, idade);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+    
 
     /**
      * Test of getImage method, of class Conexao.
