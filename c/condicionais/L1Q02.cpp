@@ -43,8 +43,7 @@ int main(void){
          
     }else{
           printf("Nao e um triangulo\n");
-    }
-              
+    }          
     system("PAUSE");
     
     return 0;
