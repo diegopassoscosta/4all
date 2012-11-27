@@ -1,0 +1,292 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 14 (filtered)">
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Liberation Serif";}
+@font-face
+	{font-family:"DejaVu Sans";
+	panose-1:2 11 6 3 3 8 4 2 2 4;}
+@font-face
+	{font-family:"Lohit Hindi";}
+@font-face
+	{font-family:"Liberation Sans";}
+@font-face
+	{font-family:"\@Liberation Serif";}
+@font-face
+	{font-family:"\@Lohit Hindi";}
+@font-face
+	{font-family:"\@Liberation Sans";}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Liberation Serif","serif";}
+p.MsoCaption, li.MsoCaption, div.MsoCaption
+	{margin-top:6.0pt;
+	margin-right:0cm;
+	margin-bottom:6.0pt;
+	margin-left:0cm;
+	font-size:12.0pt;
+	font-family:"Liberation Serif","serif";
+	font-style:italic;}
+p.MsoList, li.MsoList, div.MsoList
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:6.0pt;
+	margin-left:0cm;
+	font-size:12.0pt;
+	font-family:"Liberation Serif","serif";}
+p.MsoBodyText, li.MsoBodyText, div.MsoBodyText
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:6.0pt;
+	margin-left:0cm;
+	font-size:12.0pt;
+	font-family:"Liberation Serif","serif";}
+p.Ttulo1, li.Ttulo1, div.Ttulo1
+	{mso-style-name:Título1;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:6.0pt;
+	margin-left:0cm;
+	page-break-after:avoid;
+	font-size:14.0pt;
+	font-family:"Liberation Sans","sans-serif";}
+p.ndice, li.ndice, div.ndice
+	{mso-style-name:Índice;
+	margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Liberation Serif","serif";}
+@page WordSection1
+	{size:595.3pt 841.9pt;
+	margin:2.0cm 2.0cm 2.0cm 2.0cm;}
+div.WordSection1
+	{page:WordSection1;}
+-->
+</style>
+
+</head>
+
+<body bgcolor=white lang=PT-BR style='line-break:strict'>
+
+<div class=WordSection1>
+
+<p class=MsoNormal style='line-height:150%'>Estudo dirigido de 16/11 e 19/11</p>
+
+<p class=MsoNormal style='line-height:150%'>&nbsp;</p>
+
+<p class=MsoNormal style='line-height:150%'>Com base no diagrama de entidade
+relacionamento abaixo desenvolva o sistema que se pede:</p>
+
+<p class=MsoNormal style='line-height:150%'>&nbsp;</p>
+
+<p class=MsoNormal style='line-height:150%'><img width=469 height=381
+src="EstudoDirigido_arquivos/image001.jpg" align=left></p>
+
+<p class=MsoNormal style='line-height:150%'>&nbsp;</p>
+
+<p class=MsoNormal style='line-height:150%'>&nbsp;</p>
+
+<p class=MsoNormal style='line-height:150%'>&nbsp;</p>
+
+<p class=MsoNormal style='line-height:150%'>&nbsp;</p>
+
+<p class=MsoNormal style='line-height:150%'>&nbsp;</p>
+
+<p class=MsoNormal style='line-height:150%'>&nbsp;</p>
+
+<p class=MsoNormal style='line-height:150%'>&nbsp;</p>
+
+<p class=MsoNormal style='line-height:150%'>&nbsp;</p>
+
+<p class=MsoNormal style='line-height:150%'>&nbsp;</p>
+
+<p class=MsoNormal style='line-height:150%'>&nbsp;</p>
+
+<p class=MsoNormal style='line-height:150%'>&nbsp;</p>
+
+<p class=MsoNormal style='line-height:150%'>&nbsp;</p>
+
+<p class=MsoNormal style='line-height:150%'>&nbsp;</p>
+
+<p class=MsoNormal style='line-height:150%'><b><u><span style='font-size:16.0pt;
+line-height:150%'>Etapa 0 – Banco de dados</span></u></b></p>
+
+<p class=MsoNormal style='line-height:150%'>&nbsp;</p>
+
+<p class=MsoNormal style='line-height:150%'><b>1)</b> Crie um banco de dado com
+nome Exer_sys01.</p>
+
+<p class=MsoNormal style='line-height:150%'><b>2)</b> Execute o script de
+criação das tabelas ¨cidade¨ e ¨estado¨. (Exer_sys01.sql)</p>
+
+<p class=MsoNormal style='line-height:150%'><b>3)</b> Crie uma pasta chama
+¨libary¨.</p>
+
+<p class=MsoNormal style='line-height:150%'><b>4)</b> Crie um arquivo php para
+realizar conexão com o base de dados &#8594;  Exer_sys01. Salve o arquivo com
+nome conexao.php.</p>
+
+<p class=MsoNormal style='line-height:150%'>&nbsp;</p>
+
+<p class=MsoNormal style='line-height:150%'>&nbsp;</p>
+
+<p class=MsoNormal style='line-height:150%'><img width=617 height=257
+src="EstudoDirigido_arquivos/image002.jpg" align=left><b><u><span
+style='font-size:16.0pt;line-height:150%'>Etapa 1 – Módulo [Estado]</span></u></b></p>
+
+<p class=MsoNormal style='line-height:150%'><b>&nbsp;</b></p>
+
+<p class=MsoNormal style='line-height:150%'><b>5)</b> Crie um arquivo php para
+realizar listagem de todos os dados da tabela ¨estado¨ salve-o com o nome
+estado_lista.php. Não esqueça de realizar o require_once(importação) do arquivo
+de conexão com o banco de dados.</p>
+
+<p class=MsoNormal style='line-height:150%'>&nbsp;</p>
+
+<p class=MsoNormal style='line-height:150%'><img width=642 height=445
+src="EstudoDirigido_arquivos/image003.jpg" align=left><img width=572
+height=254 src="EstudoDirigido_arquivos/image004.jpg" align=left></p>
+
+<p class=MsoNormal style='line-height:150%'>&nbsp;</p>
+
+<p class=MsoNormal style='line-height:150%'>Obs.: Na listagem não esqueça de
+realizar a coluna &lt;td&gt;Opção&lt;/td&gt; e criar a opção de deleçao
+enviando um link para estado_deletar.php</p>
+
+<p class=MsoNormal style='line-height:150%'>&nbsp;</p>
+
+<p class=MsoNormal style='line-height:150%'><b>6)</b> Edite o estado_lista.php.
+Adicione um formulário de inserção para adicionar novos estados.</p>
+
+<p class=MsoNormal style='line-height:150%'>&nbsp;</p>
+
+<p class=MsoNormal style='line-height:150%'><img width=642 height=95
+src="EstudoDirigido_arquivos/image005.jpg" align=left></p>
+
+<p class=MsoNormal style='line-height:150%'>Obs.: não esqueça de adicionar o
+action apontando para o arquivo estado_inserir.php.</p>
+
+<p class=MsoNormal style='line-height:150%'><b>7)</b> Crie um arquivo php para
+realizar inserção de dados na tabela ¨estado¨, salve-o com o nome
+estado_inserir.php. Não esqueça de realizar o require_once(importação) do
+arquivo de conexão com o banco de dados.</p>
+
+<p class=MsoNormal style='line-height:150%'><img width=642 height=279
+src="EstudoDirigido_arquivos/image006.jpg" align=left>Obs.: para debugar/testar
+a query que será executado no banco de dados realize o comando exit() como
+mostra o trecho comentado.</p>
+
+<p class=MsoNormal style='line-height:150%'>&nbsp;</p>
+
+<p class=MsoNormal style='line-height:150%'><b>8)</b> Crie um arquivo php para
+realizar deleçao de dados na tabela ¨estado¨, salve-o com o nome
+estado_deletar.php. Não esqueça de realizar o require_once(importação) do
+arquivo de conexão com o banco de dados.</p>
+
+<p class=MsoNormal style='line-height:150%'><img width=642 height=220
+src="EstudoDirigido_arquivos/image007.jpg" align=left></p>
+
+<p class=MsoNormal style='line-height:150%'>Obs.: para debugar/testar a query
+que será executado no banco de dados realize o comando exit() como mostra o
+trecho comentado.</p>
+
+<p class=MsoNormal style='line-height:150%'>&nbsp;</p>
+
+<p class=MsoNormal style='line-height:150%'><b><u><span style='font-size:16.0pt;
+line-height:150%'>Etapa 2 – Módulo [Cidade]</span></u></b> </p>
+
+<p class=MsoNormal style='line-height:150%'><b>&nbsp;</b></p>
+
+<p class=MsoNormal style='line-height:150%'><img width=642 height=300
+src="EstudoDirigido_arquivos/image008.jpg" align=left><b>9)</b> Crie um arquivo
+php para realizar listagem de todos os dados da tabela ¨cidade¨ salve-o com o
+nome cidade_lista.php. Não esqueça de realizar o require_once(importação) do
+arquivo de conexão com o banco de dados.</p>
+
+<p class=MsoNormal style='line-height:150%'>&nbsp;</p>
+
+<p class=MsoNormal style='line-height:150%'>&nbsp;</p>
+
+<p class=MsoNormal style='line-height:150%'><img width=642 height=516
+src="EstudoDirigido_arquivos/image009.jpg" align=left>Obs.: Na listagem não
+esqueça de realizar a coluna &lt;td&gt;Opção&lt;/td&gt; e criar a opção de
+deleção enviando um link para cidade_deletar.php</p>
+
+<p class=MsoNormal style='line-height:150%'><b>&nbsp;</b></p>
+
+<p class=MsoNormal style='line-height:150%'><b><span style='color:red;
+background:yellow'>Desafio: você deverá substituir o campo sigla por um caixa
+de select exibindo o nome dos estados e valor de cada opção deve ser o
+¨est_id¨. A propriedade name do select deverá ser: sel_estado.</span></b></p>
+
+<p class=MsoNormal style='line-height:150%'><b> </b></p>
+
+<p class=MsoNormal style='line-height:150%'><b>10)</b> Crie um arquivo php para
+realizar inserção de dados na tabela ¨cidade¨, salve-o com o nome
+cidade_inserir.php. Não esqueça de realizar o require_once(importação) do
+arquivo de conexão com o banco de dados.</p>
+
+<p class=MsoNormal style='line-height:150%'><img width=642 height=281
+src="EstudoDirigido_arquivos/image010.jpg" align=left></p>
+
+<p class=MsoNormal style='line-height:150%'>Obs.: para debugar/testar a query
+que será executado no banco de dados realize o comando exit() como mostra o
+trecho comentado.</p>
+
+<p class=MsoNormal style='line-height:150%'>&nbsp;</p>
+
+<p class=MsoNormal style='line-height:150%'><b>11)</b> Crie um arquivo php para
+realizar deleçao de dados na tabela ¨cidade¨, salve-o com o nome
+cidade_deletar.php. Não esqueça de realizar o require_once(importação) do
+arquivo de conexão com o banco de dados.</p>
+
+<p class=MsoNormal style='line-height:150%'><img width=642 height=228
+src="EstudoDirigido_arquivos/image011.jpg" align=left></p>
+
+<p class=MsoNormal style='line-height:150%'>Obs.: para debugar/testar a query
+que será executado no banco de dados realize o comando exit() como mostra o
+trecho comentado.</p>
+
+<p class=MsoNormal style='line-height:150%'>&nbsp;</p>
+
+<p class=MsoNormal style='line-height:150%'><b><u><span style='font-size:16.0pt;
+line-height:150%'>Etapa 3 – Módulo [Agora é contigo]</span></u></b> </p>
+
+<p class=MsoNormal style='line-height:150%'>&nbsp;</p>
+
+<p class=MsoNormal style='line-height:150%'><b>12) Crie menu´s para dar
+navegabilidade ao seu sistema.</b></p>
+
+<p class=MsoNormal style='line-height:150%'><b>13) Crie o módulo de cadastro dos
+usuários com base no módulos anteriores.</b></p>
+
+<p class=MsoNormal style='line-height:150%'><b>14) Crie uma coluna cid_ativo na
+tabela cidade e est_ativo na tabela estado. Altere os arquivos de deleção para
+que ao clicar na opção de deleção realizar apenas a atualização do campo ativo
+para 0.</b></p>
+
+<p class=MsoNormal style='line-height:150%'><b>&nbsp;</b></p>
+
+<p class=MsoNormal style='line-height:150%'><b>&nbsp;</b></p>
+
+<p class=MsoNormal style='line-height:150%'><b>&nbsp;</b></p>
+
+<p class=MsoNormal style='line-height:150%'><b>Sucesso!!! </b></p>
+
+<p class=MsoNormal style='line-height:150%'><b>&nbsp;</b></p>
+
+<p class=MsoNormal style='line-height:150%'><b>Professor: Leonardo Naiã </b></p>
+
+</div>
+
+</body>
+
+</html>

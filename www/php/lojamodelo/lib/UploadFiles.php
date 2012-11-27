@@ -1,0 +1,56 @@
+<?php
+class UploadFiles
+{
+	
+	private $nameFile;
+	
+	/**
+	 * Enter description here...
+	 *
+	 * @param String $destino
+	 * @param GLOBAL $file
+	 * @return $_FILES
+	 */
+	public function upload($destino, $file){
+	
+		$arquivoTmp = $file["tmp_name"];
+		
+		$file = $file["name"];
+		
+		$file = ereg_replace("[ÁÀÂÃ]","A", $file);
+		$file = ereg_replace("[áàâãª]","a", $file);
+		$file = ereg_replace("[ÉÈÊ]","E", $file);
+		$file = ereg_replace("[éèê]","e", $file);
+		$file = ereg_replace("[ÓÒÔÕ]","O", $file);
+		$file = ereg_replace("[óòôõº]","o", $file);
+		$file = ereg_replace("[ÚÙÛ]","U", $file);
+		$file = ereg_replace("[úùû]","u", $file);
+		$file = str_replace("Ç","C", $file);
+		$file = str_replace("ç","c", $file);
+		$file = str_replace("-","", $file);
+		
+		$nomeArquivo = date('Ymd').time() . str_replace(" ", "", $file);
+		$arquivo    = $destino . date('Ymd').time() . str_replace(" ", "", $file);
+//		exit($arquivoTmp);
+	
+		if(!move_uploaded_file($arquivoTmp, $arquivo)) {
+			$retorno = false;
+		} else {
+			$retorno = true;
+		}
+	
+		$this->nameFile = $nomeArquivo;
+		
+		return $retorno;
+	}
+	
+	/**
+	 * RETORNA O NOME DO ARQUIVO
+	 *
+	 * @return $this->nameFile;
+	 */
+	public function getNameFile(){
+		return $this->nameFile;
+	}
+}
+?>
