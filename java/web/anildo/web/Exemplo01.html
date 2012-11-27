@@ -1,0 +1,24 @@
+<html>
+	<head>
+		<script type="text/javascript" src="jquery/jquery-1.6.3.js"></script>
+		
+		<script type="text/javascript">
+			$(document).ready(function(){
+                            $("a").toggle(function() {
+                                $("#divTexto").hide('slow');
+                                }, function() {
+                                $("#divTexto").show('fast');
+                            });
+                        });
+		</script>
+
+	</head>
+	<body>
+		 <div>
+                    <a href="#">Clica Aqui</a>
+                    <div id="divTexto" style="background-color:#FF0000">
+                       Texto e mais texto...
+                    </div>
+                 </div>
+	</body>
+</html>
