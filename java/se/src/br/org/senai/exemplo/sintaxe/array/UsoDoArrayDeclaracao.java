@@ -1,7 +1,7 @@
 /**
  * 
  */
-package br.org.senai.exemplo.sintaxe.Array;
+package br.org.senai.exemplo.sintaxe.array;
 
 /**
  * @author gabriel

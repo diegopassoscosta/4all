@@ -1,4 +1,4 @@
-package br.org.senai.exemplo.sintaxe.Array;
+package br.org.senai.exemplo.sintaxe.array;
 
 public class UsoDoArray {
 
