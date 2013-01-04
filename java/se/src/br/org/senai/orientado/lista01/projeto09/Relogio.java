@@ -8,7 +8,7 @@ package br.org.senai.orientado.lista01.projeto09;
  *
  * @author lab01
  * Ajustando multiplos atributos
- * adicionando métodos
+ * adicionando métodos que convertem o tempo em segundos
  */
 public class Relogio {
     
@@ -77,6 +77,15 @@ public class Relogio {
      */
     public int getMinutoSegundo() {
         return this.minuto * 60;
+    }
+    
+    /**
+     * Tempo total em segundos
+     */
+    public int getTempoTotalSegundos(){
+    
+        return getHoraSegundo() + getMinutoSegundo() + getSegundo();
+    
     }
      
 }
