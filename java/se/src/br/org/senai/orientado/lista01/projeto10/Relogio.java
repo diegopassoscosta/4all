@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.org.senai.orientado.lista01.projeto09;
+package br.org.senai.orientado.lista01.projeto10;
 
 /**
  *
@@ -16,6 +16,11 @@ public class Relogio {
     private int minuto;
     private int segundo;
 
+    public Relogio(int hora, int minuto, int segundo){
+        this.hora = hora;
+        this.minuto = minuto;
+        this.segundo = segundo;
+    }
     /**
      * @return a hora
      */

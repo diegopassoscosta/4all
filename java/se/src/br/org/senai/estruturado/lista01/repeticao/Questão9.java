@@ -8,9 +8,8 @@ package br.org.senai.estruturado.lista01.repeticao;
  *
  * @author Diego Passos Costa
  */
-public class Questao9 {
+public class Questão9 {
+     public static void main(String args[]){
     
-    public static void main(String args[]){
-    
-    }  
+    }
 }
