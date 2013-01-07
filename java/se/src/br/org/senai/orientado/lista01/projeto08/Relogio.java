@@ -6,7 +6,7 @@ package br.org.senai.orientado.lista01.projeto08;
 
 /**
  *
- * @author lab01
+ * @author Diego Passos Costa
  * Ajustando multiplos atributos
  */
 public class Relogio {

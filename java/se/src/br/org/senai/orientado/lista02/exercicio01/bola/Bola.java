@@ -9,7 +9,7 @@ package br.org.senai.orientado.lista02.exercicio01.bola;
 
 /**
  *
- * @author lab01
+ * @author Diego Passos Costa
  */
 public class Bola {
     

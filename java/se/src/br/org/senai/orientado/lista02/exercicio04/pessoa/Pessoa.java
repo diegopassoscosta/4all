@@ -12,7 +12,7 @@ package br.org.senai.orientado.lista02.exercicio04.pessoa;
 
 /**
  *
- * @author lab01
+ * @author Diego Passos Costa
  */
 public class Pessoa {
     
@@ -26,14 +26,23 @@ public class Pessoa {
         }
     }
     
+    /**
+     * 
+     */
     public void envelhecer(){
     
     }
     
+    /**
+     * 
+     */
     public void engordar(){
     
     }
     
+    /**
+     * 
+     */
     public void emagrecer(){
     
     }

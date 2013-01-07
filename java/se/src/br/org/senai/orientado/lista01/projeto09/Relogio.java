@@ -6,7 +6,7 @@ package br.org.senai.orientado.lista01.projeto09;
 
 /**
  *
- * @author lab01
+ * @author Diego Passos Costa
  * Ajustando multiplos atributos
  * adicionando métodos que convertem o tempo em segundos
  */

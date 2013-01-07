@@ -13,7 +13,7 @@ package br.org.senai.orientado.lista02.exercicio03.retangulo;
 
 /**
  *
- * @author lab01
+ * @author Diego Passos Costa
  */
 public class Retangulo {
     

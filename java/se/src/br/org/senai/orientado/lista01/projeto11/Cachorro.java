@@ -6,7 +6,7 @@ package br.org.senai.orientado.lista01.projeto11;
 
 /**
  *
- * @author lab01
+ * @author Diego Passos Costa
  */
 public class Cachorro extends Animal{
     
