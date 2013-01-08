@@ -8,7 +8,7 @@ package br.org.senai.estruturado.lista01.repeticoes;
  *
  * @author Diego Passos Costa
  */
-public class Questao16 {
+public class Questao16{
     
     public static void main(String args[]){
     
