@@ -13,5 +13,14 @@ import java.util.Scanner;
 public class Questao18 {
 
     public static void main(String args[]) {
+        double tibroncio = 1.20;
+        double asdrubal = 1.05;
+        int anos = 0;
+        while (asdrubal < tibroncio){
+            asdrubal += 0.03;
+            tibroncio += 0.02;
+            ++anos;
+        }
+        System.out.println("anos para asdrubal ficar maior que tibroncio: " + anos);
     }
 }
