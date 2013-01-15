@@ -19,14 +19,7 @@ public class Questao20 {
     float idade = 0;
     float sexo = 0;
     float genero = 0;
-    
-    float comedia = 0;
-    float acao = 0;
-    float terror = 0;
-    
-    float total_homens = 0;
-    float total_mulheres = 0;
-    
+   
     float idade_pessoas_que_gostam_de_terror = 0;
     
     float homens_que_preferem_acao = 0;
