@@ -5,6 +5,9 @@
 package br.org.senai.exemplo.conexao.banco.leonardo;
 
 //import br.org.senai.exemplo.conexao.banco.leonardo.n;
+import br.org.codeforlife.exemplo.conexao.banco.leonardo.Conn;
+import br.org.codeforlife.exemplo.conexao.banco.leonardo.NaoFoiInformandaNenhumaQueryException;
+import br.org.codeforlife.exemplo.conexao.banco.leonardo.NaoEncontradoTipoDeBanco;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;

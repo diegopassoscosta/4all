@@ -4,6 +4,7 @@
  */
 package br.org.senai.exemplo.calculadora.celso;
 
+import br.org.codeforlife.exemplo.calculadora.celso.CalculadoraSoma;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

@@ -5,6 +5,7 @@
 package br.org.senai.exemplo.conexao.banco.gelton;
 
 
+import br.org.codeforlife.exemplo.conexao.banco.gelton.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import org.junit.After;

@@ -4,8 +4,8 @@
  */
 package br.org.senai.exemplo.conexao.diego;
 
-import br.org.senai.exemplo.conexao.banco.diego.Conexao;
-import br.org.senai.exemplo.conexao.banco.diego.FaltaParametroDeConexaoException;
+import br.org.codeforlife.exemplo.conexao.banco.diego.Conexao;
+import br.org.codeforlife.exemplo.conexao.banco.diego.FaltaParametroDeConexaoException;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

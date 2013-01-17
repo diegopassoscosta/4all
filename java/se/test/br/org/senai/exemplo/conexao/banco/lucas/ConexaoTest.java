@@ -4,6 +4,7 @@
  */
 package br.org.senai.exemplo.conexao.banco.lucas;
 
+import br.org.codeforlife.exemplo.conexao.banco.lucas.Conexao;
 import java.sql.ResultSet;
 import org.junit.After;
 import org.junit.AfterClass;
