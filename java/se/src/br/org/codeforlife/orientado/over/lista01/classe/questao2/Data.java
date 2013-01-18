@@ -4,6 +4,9 @@
  */
 package br.org.codeforlife.orientado.over.lista01.classe.questao2;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
 /**
  *
  * @author lab01
@@ -39,41 +42,41 @@ public class Data {
      */
     public String getMesPorExtenso() {
         String mesExtenso;
-        switch (mes) {
-            case 1:
+        switch (mes-1) {
+            case Calendar.JANUARY:
                 mesExtenso = "Janeiro";
                 break;
-            case 2:
+            case Calendar.FEBRUARY:
                 mesExtenso = "Fevereiro";
                 break;
-            case 3:
+            case Calendar.MARCH:
                 mesExtenso = "Março";
                 break;
-            case 4:
+            case Calendar.APRIL:
                 mesExtenso = "Abril";
                 break;
-            case 5:
+            case Calendar.MAY:
                 mesExtenso = "Maio";
                 break;
-            case 6:
+            case Calendar.JUNE:
                 mesExtenso = "Junho";
                 break;
-            case 7:
+            case Calendar.JULY:
                 mesExtenso = "Julho";
                 break;
-            case 8:
+            case Calendar.AUGUST:
                 mesExtenso = "Agosto";
                 break;
-            case 9:
+            case Calendar.SEPTEMBER:
                 mesExtenso = "Setembro";
                 break;
-            case 10:
+            case Calendar.OCTOBER:
                 mesExtenso = "Outubro";
                 break;
-            case 11:
+            case Calendar.NOVEMBER:
                 mesExtenso = "Novembro";
                 break;
-            case 12:
+            case Calendar.DECEMBER:
                 mesExtenso = "Dezembro";
                 break;
             default:
@@ -110,13 +113,8 @@ public class Data {
         return resultado;
     }
 
-    public boolean isBissexto() {
-        boolean retorno = false;
-        
-        if (this.ano % 4 != 0) {
-            retorno = false;
-        }
-        return true;
+    public boolean isBissexto() {     
+       return new GregorianCalendar().isLeapYear(ano);
     }
 
     /**
