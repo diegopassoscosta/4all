@@ -6,7 +6,7 @@ package br.org.codeforlife.orientado.over.lista01.classe.questao1;
 
 /**
  *
- * @author lab01
+ * @author Diego Passos Costa
  */
 public class Aluno {
 

@@ -11,7 +11,7 @@ package br.org.codeforlife.orientado.lista02.exercicio12.containvestimento;
 
 /**
  *
- * @author lab01
+ * @author Diego Passos Costa
  */
 public class ContaInvestimento {
     

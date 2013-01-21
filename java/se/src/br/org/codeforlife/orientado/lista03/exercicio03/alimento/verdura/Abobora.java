@@ -4,7 +4,7 @@ import br.org.codeforlife.orientado.lista03.exercicio03.alimento.Alimento;
 
 /**
  *
- * @author lab01
+ * @author Diego Passos Costa
  */
 public class Abobora extends Alimento {
    

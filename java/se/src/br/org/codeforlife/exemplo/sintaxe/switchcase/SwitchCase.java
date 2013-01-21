@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author lab01
+ * @author Diego Passos Costa
  */
 public class SwitchCase {
     

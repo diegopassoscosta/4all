@@ -9,7 +9,7 @@ import java.util.GregorianCalendar;
 
 /**
  *
- * @author lab01
+ * @author Diego Passos Costa
  */
 public class Data {
 

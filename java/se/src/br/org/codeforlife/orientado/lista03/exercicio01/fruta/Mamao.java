@@ -6,7 +6,7 @@ package br.org.codeforlife.orientado.lista03.exercicio01.fruta;
 
 /**
  *
- * @author lab01
+ * @author Diego Passos Costa
  */
 public class Mamao {
 

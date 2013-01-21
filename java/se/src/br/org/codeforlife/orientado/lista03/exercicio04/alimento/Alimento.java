@@ -2,13 +2,13 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.org.codeforlife.orientado.lista03.exercicio01.verdura;
+package br.org.codeforlife.orientado.lista03.exercicio04.alimento;
 
 /**
  *
  * @author Diego Passos Costa
  */
-public class Beterraba {
+public abstract class Alimento {
     private int peso;
     private int energia;
 
@@ -17,10 +17,11 @@ public class Beterraba {
      * @param peso
      * @param energia 
      */
-    public Beterraba(int peso, int energia) {
+    public Alimento(int peso, int energia) {
         this.peso = peso;
         this.energia = energia;
     }
+
     /**
      * @return the peso
      */

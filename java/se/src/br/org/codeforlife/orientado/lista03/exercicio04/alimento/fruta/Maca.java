@@ -2,22 +2,27 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.org.codeforlife.orientado.lista03.exercicio02.alimento.verdura;
+package br.org.codeforlife.orientado.lista03.exercicio04.alimento.fruta;
 
-import br.org.codeforlife.orientado.lista03.exercicio02.alimento.Alimento;
+import br.org.codeforlife.orientado.lista03.exercicio04.alimento.Alimento;
+
+
+
 
 /**
  *
  * @author Diego Passos Costa
  */
-public class Beterraba extends Alimento{
+public class Maca extends Alimento{
+   
     /**
      * 
      * @param peso
      * @param energia 
      */
-    public Beterraba(int peso, int energia) {
+    public Maca(int peso, int energia) {
         super(peso,energia);
     }
+
     
 }

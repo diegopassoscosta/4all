@@ -2,15 +2,13 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.org.codeforlife.orientado.lista03.exercicio03;
+package br.org.codeforlife.orientado.lista03.exercicio04;
 
-import br.org.codeforlife.orientado.lista03.exercicio03.alimento.fruta.Maca;
-import br.org.codeforlife.orientado.lista03.exercicio03.alimento.fruta.Mamao;
-import br.org.codeforlife.orientado.lista03.exercicio03.alimento.verdura.Abobora;
-import br.org.codeforlife.orientado.lista03.exercicio03.alimento.verdura.Beterraba;
-import br.org.codeforlife.orientado.lista03.exercicio03.pessoa.Pessoa;
-
-
+import br.org.codeforlife.orientado.lista03.exercicio04.alimento.fruta.Maca;
+import br.org.codeforlife.orientado.lista03.exercicio04.alimento.fruta.Mamao;
+import br.org.codeforlife.orientado.lista03.exercicio04.alimento.verdura.Abobora;
+import br.org.codeforlife.orientado.lista03.exercicio04.alimento.verdura.Beterraba;
+import br.org.codeforlife.orientado.lista03.exercicio04.pessoa.Pessoa;
 
 
 /**

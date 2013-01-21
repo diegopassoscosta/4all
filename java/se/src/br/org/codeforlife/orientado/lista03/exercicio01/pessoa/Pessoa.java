@@ -11,7 +11,7 @@ import br.org.codeforlife.orientado.lista03.exercicio01.verdura.Beterraba;
 
 /**
  *
- * @author lab01
+ * @author Diego Passos Costa
  */
 public class Pessoa {
     private int peso;
