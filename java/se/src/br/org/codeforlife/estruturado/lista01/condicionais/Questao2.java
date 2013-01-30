@@ -15,33 +15,33 @@ public class Questao2 {
     public static void main(String args[]){
                
     //declaração de variáveis
-    int primeiro_lado;
-    int segundo_lado;
-    int terceiro_lado;
+    int primeiroLado;
+    int segundoLado;
+    int terceiroLado;
     Scanner leia = new Scanner(System.in);
     
     //solicitação do pedido
     System.out.println("Informe o primeiro lado: ");    
-    primeiro_lado = leia.nextInt();
+    primeiroLado = leia.nextInt();
 
     System.out.println("Informe o segundo lado: ");    
-    segundo_lado = leia.nextInt();
+    segundoLado = leia.nextInt();
     
     System.out.println("Informe o terceiro lado: ");    
-    terceiro_lado = leia.nextInt();
+    terceiroLado = leia.nextInt();
 
     //calculos
     // | b - c | < a < b + c
-    if( ( (Math.abs(segundo_lado - terceiro_lado)) < primeiro_lado) && (primeiro_lado < (segundo_lado + terceiro_lado) ) ){
+    if( ( (Math.abs(segundoLado - terceiroLado)) < primeiroLado) && (primeiroLado < (segundoLado + terceiroLado) ) ){
         System.out.println("E um triangulo: ");
         
         //verifica qual o tipo do triagulo
         //Equilatero 3 lados iguaus
         //Escaleno 3 lados diferentes
         //Isosceles dois lados iguais escolhido por exclusão
-        if ( (primeiro_lado == segundo_lado) && (primeiro_lado == terceiro_lado) && (segundo_lado == terceiro_lado) ){
+        if ( (primeiroLado == segundoLado) && (primeiroLado == terceiroLado) && (segundoLado == terceiroLado) ){
              System.out.println("Equilatero\n");
-        }else if ( (primeiro_lado != segundo_lado) && (primeiro_lado != terceiro_lado) && (segundo_lado != terceiro_lado) ){
+        }else if ( (primeiroLado != segundoLado) && (primeiroLado != terceiroLado) && (segundoLado != terceiroLado) ){
               System.out.println("Escaleno\n");            
         }else{
               System.out.println("Isosceles\n");
