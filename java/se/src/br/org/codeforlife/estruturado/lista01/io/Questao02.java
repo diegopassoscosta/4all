@@ -18,11 +18,11 @@ public class Questao02 {
         int meses;
         int dias;
 
-        int anos_em_dias;
-        int meses_em_dias;
-        int dias_em_dias;
+        int anosEmDias;
+        int mesesEmDias;
+        int diasEmDias;
 
-        int total_de_dias_de_vida;
+        int totalDeDiasDeVida;
 
         Scanner leia = new Scanner(System.in);
         
@@ -35,13 +35,13 @@ public class Questao02 {
         dias = leia.nextInt();
 
         //calculos
-        anos_em_dias = anos * 365;
-        meses_em_dias = meses * 30;
-        dias_em_dias = dias;
-        total_de_dias_de_vida = anos_em_dias + meses_em_dias + dias_em_dias;
+        anosEmDias = anos * 365;
+        mesesEmDias = meses * 30;
+        diasEmDias = dias;
+        totalDeDiasDeVida = anosEmDias + mesesEmDias + diasEmDias;
 
         //demonstração dos resultados
-        System.out.println("Total de dias de vida \n" + total_de_dias_de_vida);
+        System.out.println("Total de dias de vida \n" + totalDeDiasDeVida);
 
     }
 }
