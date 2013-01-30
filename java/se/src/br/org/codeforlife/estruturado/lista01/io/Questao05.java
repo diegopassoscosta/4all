@@ -14,40 +14,40 @@ public class Questao05 {
 
     public static void main(String args[]) {
         //declaração de variáveis
-        int valor_a_retirar = 0;
-        int resto_de_50 = 0;
-        int resto_de_10 = 0;
-        int resto_de_5 = 0;
-        int resto_de_1 = 0;
+        int valorARetirar = 0;
+        int restoDe50 = 0;
+        int restoDe10 = 0;
+        int restoDe5 = 0;
+        int restoDe1 = 0;
 
-        int quantidade_de_notas_de_50;
-        int quantidade_de_notas_de_10;
-        int quantidade_de_notas_de_5;
-        int quantidade_de_notas_de_1;
+        int quantidadeDeNotasDe50;
+        int quantidadeDeNotasDe10;
+        int quantidadeDeNotasDe5;
+        int quantidadeDeNotasDe1;
         
         Scanner leia = new Scanner(System.in);
 
         //solicitação do pedido
         System.out.println("Informe o valor a ser retirado do caixa eletronico: ");
-        valor_a_retirar = leia.nextInt();
+        valorARetirar = leia.nextInt();
 
         //calculos
-        quantidade_de_notas_de_50 = valor_a_retirar / 50;
-        resto_de_50 = valor_a_retirar % 50;
+        quantidadeDeNotasDe50 = valorARetirar / 50;
+        restoDe50 = valorARetirar % 50;
 
-        quantidade_de_notas_de_10 = resto_de_50 / 10;
-        resto_de_10 = valor_a_retirar % 10;
+        quantidadeDeNotasDe10 = restoDe50 / 10;
+        restoDe10 = valorARetirar % 10;
 
-        quantidade_de_notas_de_5 = resto_de_10 / 5;
-        resto_de_5 = valor_a_retirar % 5;
+        quantidadeDeNotasDe5 = restoDe10 / 5;
+        restoDe5 = valorARetirar % 5;
 
-        quantidade_de_notas_de_1 = resto_de_5 / 1;
+        quantidadeDeNotasDe1 = restoDe5 / 1;
 
         //demonstração do resultado
-        System.out.println("Numero de cedulas de 50 %d\n" + quantidade_de_notas_de_50);
-        System.out.println("Numero de cedulas de 10 %d\n" +  quantidade_de_notas_de_10);
-        System.out.println("Numero de cedulas de 5 %d\n"  + quantidade_de_notas_de_5);
-        System.out.println("Numero de cedulas de 1 %d\n"  + quantidade_de_notas_de_1);
+        System.out.println("Numero de cedulas de 50 %d\n" + quantidadeDeNotasDe50);
+        System.out.println("Numero de cedulas de 10 %d\n" +  quantidadeDeNotasDe10);
+        System.out.println("Numero de cedulas de 5 %d\n"  + quantidadeDeNotasDe5);
+        System.out.println("Numero de cedulas de 1 %d\n"  + quantidadeDeNotasDe1);
 
     }
 }
