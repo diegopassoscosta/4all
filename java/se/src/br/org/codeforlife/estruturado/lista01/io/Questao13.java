@@ -14,29 +14,29 @@ public class Questao13 {
 
     public static void main(String args[]) {
         //declaração de variáveis
-        float tempo_de_viagem = 0;
-        float velocidade_media = 0;
-        float kilometros_por_litro = 12;
+        float tempoDeViagem = 0;
+        float velocidadeMedia = 0;
+        float kilometrosPorLitro = 12;
 
-        float litros_usados = 0;
-        float distancia_da_viagem = 0;
+        float litrosUsados = 0;
+        float distanciaDaViagem = 0;
 
         Scanner leia = new Scanner(System.in);
 
         //solicitação do pedido
         System.out.println("Informe o tempo de viagem: ");
-        tempo_de_viagem = leia.nextFloat();
+        tempoDeViagem = leia.nextFloat();
 
         System.out.println("Informe a velocidade media: ");
-        velocidade_media = leia.nextFloat();
+        velocidadeMedia = leia.nextFloat();
 
 
         //calculos
-        distancia_da_viagem = velocidade_media * tempo_de_viagem;
-        litros_usados = distancia_da_viagem * kilometros_por_litro;
+        distanciaDaViagem = velocidadeMedia * tempoDeViagem;
+        litrosUsados = distanciaDaViagem * kilometrosPorLitro;
 
         //demonstração do resultado
-        System.out.println("litros usados: \n" + litros_usados);
+        System.out.println("litros usados: \n" + litrosUsados);
 
     }
 }
