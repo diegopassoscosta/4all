@@ -18,11 +18,11 @@ public class Questao06 {
         int minuto;
         int segundo;
 
-        int hora_em_segundo;
-        int minuto_em_segundo;
-        int segundo_em_segundo;
+        int horaEmSegundo;
+        int minutoEmSegundo;
+        int segundoEmSegundo;
 
-        int tempo_total_de_segundos_do_dia;
+        int tempoTotalDeSegundosDoDia;
         
         Scanner leia = new Scanner(System.in);
 
@@ -35,13 +35,13 @@ public class Questao06 {
         segundo = leia.nextInt();
 
         //calculos
-        hora_em_segundo = hora * 60 * 60;
-        minuto_em_segundo = minuto * 60;
-        segundo_em_segundo = segundo;
+        horaEmSegundo = hora * 60 * 60;
+        minutoEmSegundo = minuto * 60;
+        segundoEmSegundo = segundo;
 
         //demonstração do resultado
-        tempo_total_de_segundos_do_dia = hora_em_segundo + minuto_em_segundo + segundo_em_segundo;
-        System.out.println("Tempo total de segundo no dia e de: \n" + tempo_total_de_segundos_do_dia);
+        tempoTotalDeSegundosDoDia = horaEmSegundo + minutoEmSegundo + segundoEmSegundo;
+        System.out.println("Tempo total de segundo no dia e de: \n" + tempoTotalDeSegundosDoDia);
 
     }
 }
