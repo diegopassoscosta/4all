@@ -20,7 +20,7 @@ public class Questao12 {
         float x2 = 0;
         float y2 = 0;
 
-        float distancia_entre_dois_pontos = 0;
+        float distanciaEntreDoisPontos = 0;
         
         Scanner leia = new Scanner(System.in);
 
@@ -38,10 +38,10 @@ public class Questao12 {
         y2 = leia.nextFloat();;
 
         //calculos
-        distancia_entre_dois_pontos = (float) Math.sqrt(Math.pow((x2 - x1), 2) + Math.pow((y2 - y1), 2));
+        distanciaEntreDoisPontos = (float) Math.sqrt(Math.pow((x2 - x1), 2) + Math.pow((y2 - y1), 2));
 
         //demonstração do resultado
-        System.out.println("Distancia entre dois Pontos: " + distancia_entre_dois_pontos);
+        System.out.println("Distancia entre dois Pontos: " + distanciaEntreDoisPontos);
         
     }
 }
