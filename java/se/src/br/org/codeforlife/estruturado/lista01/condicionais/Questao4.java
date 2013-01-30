@@ -14,52 +14,52 @@ public class Questao4 {
 
     public static void main(String args[]) {
         //declaração de variáveis
-        float primeira_nota = 0;
-        float primeiro_peso = 2;
+        float primeiraNota = 0;
+        float primeiroPeso = 2;
 
-        float segunda_nota = 0;
-        float segundo_peso = 2;
+        float segundaNota = 0;
+        float segundoPeso = 2;
 
-        float terceira_nota = 0;
-        float terceiro_peso = 3;
+        float terceiraNota = 0;
+        float terceiroPeso = 3;
 
-        float numerador_da_media_ponderada = 0;
-        float denominador_da_media_ponderada = 0;
+        float numeradorDaMediaPonderada = 0;
+        float denominadorDaMediaPonderadaada = 0;
 
-        float media_final = 0;
-        float media_do_curso = 7.0f;
-        float media_reprovado = 3.0f;
+        float mediaFinal = 0;
+        float mediaDoCurso = 7.0f;
+        float mediaReprovado = 3.0f;
 
         Scanner leia = new Scanner(System.in);
         //solicitação do pedido
         System.out.println("Informe a primeira nota: ");
-        primeira_nota = leia.nextInt();
+        primeiraNota = leia.nextInt();
         System.out.println("Informe o primeiro peso: ");
-        primeiro_peso = leia.nextInt();
+        primeiroPeso = leia.nextInt();
 
         System.out.println("Informe a segunda nota: ");
-        segunda_nota = leia.nextInt();
+        segundaNota = leia.nextInt();
         System.out.println("Informe o segundo peso: ");
-        segundo_peso = leia.nextInt();
+        segundoPeso = leia.nextInt();
 
         System.out.println("Informe a terceira nota: ");
-        terceira_nota = leia.nextInt();
+        terceiraNota = leia.nextInt();
         System.out.println("Informe o terceiro peso: ");
-        terceiro_peso = leia.nextInt();
+        terceiroPeso = leia.nextInt();
 
         //calculos
-        numerador_da_media_ponderada = primeira_nota * primeiro_peso + segunda_nota * segundo_peso + terceira_nota * terceiro_peso;
-        denominador_da_media_ponderada = primeiro_peso + segundo_peso + terceiro_peso;
-        media_final = numerador_da_media_ponderada / denominador_da_media_ponderada;
+        numeradorDaMediaPonderada = primeiraNota * primeiroPeso + segundaNota * segundoPeso + terceiraNota * terceiroPeso;
+        denominadorDaMediaPonderadaada = primeiroPeso + segundoPeso + terceiroPeso;
+        mediaFinal = numeradorDaMediaPonderada / denominadorDaMediaPonderadaada;
         //demonstração do resultado
 
-        System.out.println("valor do numerador: %f\n" + numerador_da_media_ponderada);
-        System.out.println("valor do denominador: %f\n" + denominador_da_media_ponderada);
-        System.out.println("media do infeliz: %f\n" + media_final);
+        System.out.println("valor do numerador: %f\n" + numeradorDaMediaPonderada);
+        System.out.println("valor do denominador: %f\n" + denominadorDaMediaPonderadaada);
+        System.out.println("media do infeliz: %f\n" + mediaFinal);
 
-        if (media_final >= media_do_curso) {
+        if (mediaFinal >= mediaDoCurso) {
             System.out.println("passou\n");
-        } else if (media_final < media_reprovado) {
+        } else if (mediaFinal < mediaReprovado) {
             System.out.println("perdeu\n");
         } else {
             System.out.println("prova final\n");
