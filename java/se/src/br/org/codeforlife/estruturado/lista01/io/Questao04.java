@@ -13,16 +13,16 @@ import java.util.Scanner;
 public class Questao04 {
 
     public static void main(String args[]) {
-        int valor_compra;
-        int valor_pago;
+        int valorCompra;
+        int valorPago;
         
         Scanner leia = new Scanner(System.in);
         
         System.out.println("Informe o valor da compra: ");
-        valor_compra = leia.nextInt();
+        valorCompra = leia.nextInt();
         System.out.println("informe o valor pago: ");
-        valor_pago = leia.nextInt();
-        System.out.println("o troco e de: \n" + (valor_pago - valor_compra));
+        valorPago = leia.nextInt();
+        System.out.println("o troco e de: \n" + (valorPago - valorCompra));
 
     }
 }
