@@ -14,5 +14,20 @@ package br.org.codeforlife.orientado.lista02.exercicio12.containvestimento;
  * @author Diego Passos Costa
  */
 public class ContaInvestimento {
+    private double saldoInicial;
+    private double taxaDeJuros;
+    
+    public ContaInvestimento(double saldoInicial, double taxaDeJuros){
+        this.saldoInicial = saldoInicial;
+        this.taxaDeJuros = taxaDeJuros; 
+    }
+    
+    public void adicioneJuros(){
+        this.saldoInicial = this.saldoInicial + this.saldoInicial * this.taxaDeJuros;
+    }
+    
+    public double saldoDaConta(){
+        return this.saldoInicial;
+    }
     
 }

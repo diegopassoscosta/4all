@@ -18,7 +18,7 @@ public class Bola {
     private int material;
     
     /**
-     * Torca a cor da bola
+     * Troca a cor da bola
      * @param cor 
      */
     public void trocaCor(String cor){

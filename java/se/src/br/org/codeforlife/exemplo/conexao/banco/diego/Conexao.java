@@ -300,5 +300,10 @@ public class Conexao {
      */
     private void criaConexaoComBanco() throws SQLException {
         con = DriverManager.getConnection(getEnderecoDeConexao(), getUsuario(), getSenha());
+        stm = con.createStatement();
+    }
+
+    public int grava(String comando) throws SQLException {
+        return stm.executeUpdate(comando);
     }
 }

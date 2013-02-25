@@ -16,7 +16,16 @@ public class Retangulo {
 
     private double largura;
     private double altura;
+    Ponto p1 = new Ponto();
+    Ponto p2 = new Ponto();
+    Ponto p3 = new Ponto();
+    Ponto p4 = new Ponto();
 
+    public Retangulo(Ponto p1, Ponto p2, Ponto p3, Ponto p4){
+    
+    
+    
+    }
     /**
      *
      * @return

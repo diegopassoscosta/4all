@@ -1,0 +1,102 @@
+Lista de exercício
+Lógica de programação com VisualAlg
+
+Entrada e Saída Básica
+1.) Faça o computador imprimir na tela o número 33.
+
+2.) Faça o computador imprimir na tela a frase:
+Olá Mundo
+
+3.) Faça com que o computador imprima na tela a soma de 1 + 1.
+
+4.) Declare uma variável de nome numero e atribua o valor 3 para ele.
+
+5.) Declare uma variável de nome nome e atribua o valor Roberto para ele.
+
+6.) Primeiro declare uma variável de nome numero e atribua o valor 5 para ele, depois faça o computador imprimir o conteúdo da variável de nome numero.
+
+7.) Primeiro declare uma variável de nome nome e atribua o valor Roberto para ele, depois faça o computador imprimir o conteúdo da variável de nome nome.
+
+8.) Faça primeiro com que o computador leia uma frase que você digitou no teclado. E depois o computador deve imprimir a frase que você digitou no teclado no monitor.
+
+9.) Faça primeiro com que o computador pergunte o nome do usuário, depois o usuário vai informar seu nome, e por fim, o computador vai imprimir na tela olá.
+
+10.) Faça primeiro com que o computador pergunte o nome do usuário, depois o usuário vai informar seu nome e por fim, o computador vai imprimir na tela:
+ olá <nome informado pelo usuário>.
+
+11.) Faça primeiro o computador perguntar a idade do usuário e por fim o computador deve imprimir na tela a seguinte frase:
+sua idade é <idade informada pelo usuário>
+
+12.) Faça primeiro com que o computador solicite o nome do usuário, depois solicite a idade do usuário e por fim imprima o seguinte resultado:
+Seu nome é <nome informado pelo usuário>
+Sua idade é <idade informada pelo usuário>
+
+
+Procedência de Operadores
+
+13.) Faça o computador escrever na tela a seguinte expressão 2+4/2
+Você concorda com o resultado?
+
+14.) Faça o computador escrever na tela a seguinte operação (2+4)/2
+Você concorda com o resultado?
+
+15.) O que você deve mudar para que a expressão 2+2*3 gere o resultado 12? 
+Depois que você descobrir peça para o computador imprimir a expressão.
+ 
+16.) O que você deve mudar para que a expressão 2+2*3 gere o resultado 8?
+Depois que você descobrir peça para o computador imprimir a expressão.
+
+Entrada e Saída Avançada
+
+17.)  Primeiro declare duas variáveis a primeira de nome base e a segunda variável de nome altura, depois, faça o computador solicitar ao usuário um valor para base e outro para altura, por fim, ordene ao computador que faça a multiplicação destes dois valores e imprima o resultado na tela.
+
+18.) Faça um algoritmo que receba uma temperatura em centígrados e transforme para fahrenheit. Sabe-se que a fórmula para conversão é F=((9xCentigrados)+160)/5. Ou seja, você deve fazer o computador pedir apenas o valor da variável que falta no caso centigrado.
+
+19.) Faça um algoritmo que receba o valor total de uma compra, o valor pago e informe qual o troco a ser devolvido. Considere que o valor pago sempre será suficiente para pagar a compra.
+
+
+Vetor
+
+20.)  Declare um vetor. 
+
+21.) Declare um vetor de 10 posições numéricas e preencha-o manualmente.
+
+22.) Declare um vetor de 10 posições de caractere e preencha-o manualmente.
+
+23.) Declare um vetor de 10 posições numéricas e faça o uso da instrução for para preenchê-lo com números.
+
+24.) Declare um vetor de 10 posições de caractere e faça o uso da instrução for para preenchê-lo com palavras.
+
+25.) Declare um vetor de 10 posições numéricas e faça o uso da instrução for para preenchê-lo com números. E que exista agora uma mensagem fornecido pelo computador, toda vez que o número vier a ser inserido “Por favor insira um número: “
+
+26.) Declare um vetor de 10 posições de caractere e faça o uso da instrução for para preenchê-lo com nomes. E que agora exista uma mensagem fornecido pelo computador, toda vez que o número vier a ser inserido “Por favor insira um número: “
+
+
+27.) Faça um vetor de 4 posições, depois ordene que o computador solicite ao usuário 4 números fazendo o uso da instrução for, por fim, faça com que o computador imprima na tela os 4 números informados pelo usuário. 
+
+28.) Faça um vetor de 4 posições, depois ordene que o computador solicite ao usuário 4 palavras fazendo o uso da instrução for, por fim, faça com que o computador imprima na tela os 4 números informados pelo usuário.
+
+29.) Declare um vetor de 7 posições, onde será armazenado o dia da semana em cada uma das posições do vetor, depois faça uso da instrução for, para popular o vetor, com a informações digitadas pelos usuários, no caso em questão, os dias da semana.
+
+30.) Declare um vetor de 7 posições, onde será armazenado o dia da semana em cada uma das posições do vetor, depois faça uso da instrução for, para popular o vetor, com a informações digitadas pelos usuários, no caso em questão, os dias da semana. Depois solicite ao usuário um dia da semana, por fim o computador deve escrever na tela o índice em que foi encontrado o dia da semana.
+
+31.) Declare um vetor de 4 posições de caractere, depois faça uso da instrução for para preencher o vetor com nomes de pessoas. Depois ordene ao computador que solicite um nome qualquer, por fim, você vai procurar no vetor o nome informado pelo usuário e informar se o nome se encontra ou não no vetor.
+
+
+
+
+
+
+
+
+Q-1) Faça um algoritmo que receba as três notas de um aluno e calcule a média ponderada considerando que as duas primeiras notas têm peso 2 e a terceira nota tem peso 3. O algoritmo deve informar se o aluno foi aprovado, reprovado ou deve fazer a prova final. A média mínima para ser aprovado é 7, a média mínima para fazer a final é 3 e média abaixo de 3 indica que o aluno está reprovado.
+
+Q-2) Faça um programa em C que receba 2 números e mostre todos os números primos do primeiro ao segundo número recebido.
+
+Q-3) Faça um algoritmo que o terceiro vetor guarde a soma de outros dois vetores.
+Exemplo:
+VETOR 1 = 1 2 3 4 5 6
+VETOR 2 = 1 2 3 4 5 6
+VETOR 3 = 2 4 6 8 10 12
+
+Q-4) Faça um algoritmo que só permita a entrada de números primos no vetor, ou seja, um número primo é aquele que é apenas dividido por 1 e ele mesmo. 

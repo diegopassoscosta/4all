@@ -28,7 +28,7 @@ public class Ponto {
      * @return X
      */
     public int retornaX() {
-        return x;
+        return getX();
     }
 
     /**
@@ -36,7 +36,7 @@ public class Ponto {
      * @return Y
      */
     public int retornaY() {
-        return y;
+        return getY();
     }
 
     /**
@@ -44,6 +44,34 @@ public class Ponto {
      * @return A impressão de X e Y
      */
     public String imprimir() {
-        return "valor de x: " + x + " valor de Y: " + y;
+        return "valor de x: " + getX() + " valor de Y: " + getY();
+    }
+
+    /**
+     * @return the x
+     */
+    public int getX() {
+        return x;
+    }
+
+    /**
+     * @param x the x to set
+     */
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    /**
+     * @return the y
+     */
+    public int getY() {
+        return y;
+    }
+
+    /**
+     * @param y the y to set
+     */
+    public void setY(int y) {
+        this.y = y;
     }
 }
