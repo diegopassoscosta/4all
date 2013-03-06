@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author lab01
+ * @author Diego Passos Costa
  */
 public class ProgramaCentral extends javax.swing.JFrame {
 

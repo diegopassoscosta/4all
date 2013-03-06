@@ -8,7 +8,7 @@ import br.org.codeforlife.orientado.over.lista01.classe.questao2.Data;
 
 /**
  *
- * @author lab01
+ * @author Diego Passos Costa
  */
 public class Voo {
 

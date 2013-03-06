@@ -6,7 +6,7 @@ package br.org.codeforlife.exemplo.sintaxe.arraylist1;
 
 /**
  *
- * @author lab01
+ * @author Diego Passos Costa
  */
 class Item {
     

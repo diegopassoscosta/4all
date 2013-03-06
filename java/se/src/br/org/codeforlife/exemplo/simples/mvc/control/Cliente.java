@@ -6,7 +6,7 @@ package br.org.codeforlife.exemplo.simples.mvc.control;
 
 /**
  *
- * @author lab01
+ * @author Diego Passos Costa
  */
 public class Cliente {
     

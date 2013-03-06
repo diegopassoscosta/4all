@@ -12,7 +12,7 @@ import javax.swing.JLabel;
 
 /**
  *
- * @author lab01
+ * @author Diego Passos Costa
  */
 public class MeuListener implements ActionListener {
 

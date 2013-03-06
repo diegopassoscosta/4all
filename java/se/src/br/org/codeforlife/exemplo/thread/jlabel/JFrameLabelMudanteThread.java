@@ -11,7 +11,7 @@ import javax.swing.Timer;
 
 /**
  *
- * @author lab01
+ * @author Diego Passos Costa
  */
 public class JFrameLabelMudanteThread extends javax.swing.JFrame {
     

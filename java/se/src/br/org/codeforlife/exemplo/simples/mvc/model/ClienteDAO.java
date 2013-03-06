@@ -12,7 +12,7 @@ import java.sql.SQLException;
 
 /**
  *
- * @author lab01
+ * @author Diego Passos Costa
  */
 public class ClienteDAO {
 

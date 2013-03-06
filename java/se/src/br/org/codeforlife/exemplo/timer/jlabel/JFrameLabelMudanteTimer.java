@@ -10,7 +10,7 @@ import javax.swing.Timer;
 
 /**
  *
- * @author lab01
+ * @author Diego Passos Costa
  */
 public class JFrameLabelMudanteTimer extends javax.swing.JFrame {
     Timer t = null;

@@ -10,7 +10,7 @@ import javax.swing.JButton;
 
 /**
  *
- * @author lab01
+ * @author Diego Passos Costa
  */
 public class Labirinto extends javax.swing.JFrame {
 
