@@ -14,7 +14,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author lab01
+ * @author Diego Passos Costa
  */
 public class VooTest {
     
