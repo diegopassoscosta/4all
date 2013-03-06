@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.org.codeforlife.exemplo.sintaxe.arraylist;
+package br.org.codeforlife.exemplo.sintaxe.arraylist0;
 
 /**
  *
