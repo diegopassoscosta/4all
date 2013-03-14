@@ -306,4 +306,8 @@ public class Conexao {
     public int grava(String comando) throws SQLException {
         return stm.executeUpdate(comando);
     }
+
+    public ResultSet consulta(String comando) throws SQLException {
+        return stm.executeQuery(comando);
+    }
 }
