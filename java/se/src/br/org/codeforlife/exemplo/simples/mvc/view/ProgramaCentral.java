@@ -8,10 +8,13 @@ import br.org.codeforlife.exemplo.conexao.banco.diego.FaltaParametroDeConexaoExc
 import br.org.codeforlife.exemplo.conexao.banco.diego.NaoFoiEscolhidoBancoParaConectarException;
 import br.org.codeforlife.exemplo.simples.mvc.control.Cliente;
 import br.org.codeforlife.exemplo.simples.mvc.model.ClienteDAO;
+import java.awt.Color;
 import java.sql.SQLException;
+import java.util.Iterator;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -24,6 +27,7 @@ public class ProgramaCentral extends javax.swing.JFrame {
      */
     public ProgramaCentral() {
         initComponents();
+        this.getContentPane().setBackground(Color.WHITE);
     }
 
     /**
@@ -44,14 +48,14 @@ public class ProgramaCentral extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextAreaInformacaoCadastro = new javax.swing.JTextArea();
         jSeparator1 = new javax.swing.JSeparator();
-        jTextFieldConsultaNome = new javax.swing.JTextField();
+        jTextFieldConsultaId = new javax.swing.JTextField();
         jLabelConsulta = new javax.swing.JLabel();
-        jLabelConsultaIdade = new javax.swing.JLabel();
-        jLabelConsultaNome = new javax.swing.JLabel();
+        jLabelConsultaId = new javax.swing.JLabel();
         jButtonConsulta = new javax.swing.JButton();
-        jTextFieldConsultaIdade = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextAreaInformacaoConsulta = new javax.swing.JTextArea();
+        jLabelNome = new javax.swing.JLabel();
+        jTextFieldConsultaNome = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -80,9 +84,9 @@ public class ProgramaCentral extends javax.swing.JFrame {
         jTextAreaInformacaoCadastro.setRows(5);
         jScrollPane1.setViewportView(jTextAreaInformacaoCadastro);
 
-        jTextFieldConsultaNome.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldConsultaId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldConsultaNomeActionPerformed(evt);
+                jTextFieldConsultaIdActionPerformed(evt);
             }
         });
 
@@ -90,15 +94,20 @@ public class ProgramaCentral extends javax.swing.JFrame {
         jLabelConsulta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelConsulta.setText("Consulta");
 
-        jLabelConsultaIdade.setText("Idade:");
-
-        jLabelConsultaNome.setText("Nome:");
+        jLabelConsultaId.setText("ID:");
 
         jButtonConsulta.setText("Consulta");
+        jButtonConsulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonConsultaActionPerformed(evt);
+            }
+        });
 
         jTextAreaInformacaoConsulta.setColumns(20);
         jTextAreaInformacaoConsulta.setRows(5);
         jScrollPane2.setViewportView(jTextAreaInformacaoConsulta);
+
+        jLabelNome.setText("Nome:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -133,13 +142,13 @@ public class ProgramaCentral extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jButtonConsulta)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabelConsultaIdade)
+                                        .addComponent(jLabelConsultaId)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextFieldConsultaIdade, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jTextFieldConsultaId, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabelConsultaNome)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextFieldConsultaNome, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(jLabelNome)
+                                        .addGap(5, 5, 5)
+                                        .addComponent(jTextFieldConsultaNome, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(18, 18, 18)
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
@@ -173,12 +182,12 @@ public class ProgramaCentral extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextFieldConsultaNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelConsultaNome))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jTextFieldConsultaId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelConsultaId))
+                        .addGap(5, 5, 5)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelConsultaIdade)
-                            .addComponent(jTextFieldConsultaIdade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabelNome)
+                            .addComponent(jTextFieldConsultaNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButtonConsulta))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -192,20 +201,59 @@ public class ProgramaCentral extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldCadastroNomeActionPerformed
 
-    private void jTextFieldConsultaNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldConsultaNomeActionPerformed
+    private void jTextFieldConsultaIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldConsultaIdActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldConsultaNomeActionPerformed
+    }//GEN-LAST:event_jTextFieldConsultaIdActionPerformed
 
     private void jButtonCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastroActionPerformed
         Cliente c = new Cliente();
         c.setNome(jTextFieldCadastroNome.getText());
         c.setIdade(Integer.parseInt(jTextFieldCadastroIdade.getText()));
         try {
-            jTextAreaInformacaoCadastro.setText("Resultado do Cadastro --> "+ClienteDAO.insereCliente(c));
+            jTextAreaInformacaoCadastro.setText("Resultado do Cadastro --> " + ClienteDAO.insereCliente(c));
         } catch (ClassNotFoundException | FaltaParametroDeConexaoException | NaoFoiEscolhidoBancoParaConectarException | SQLException ex) {
             Logger.getLogger(ProgramaCentral.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButtonCadastroActionPerformed
+
+    private void jButtonConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultaActionPerformed
+        Cliente c = new Cliente();
+
+
+        if (jTextFieldConsultaId.getText().equals("") && jTextFieldConsultaNome.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Digite alguma coisa sua budega!", "A Consultação", JOptionPane.ERROR_MESSAGE);
+
+        } else if (!jTextFieldConsultaId.getText().equals("")) {
+            c.setId(Integer.parseInt(jTextFieldConsultaId.getText()));
+            try {
+                c = ClienteDAO.consultaClienteId(c);
+                jTextAreaInformacaoConsulta.setText("Resultado da Consulta --> ID: " + c.getId() + ";\n Nome: " + c.getNome() + "\n Idade: " + c.getIdade());
+            } catch (ClassNotFoundException | FaltaParametroDeConexaoException | NaoFoiEscolhidoBancoParaConectarException | SQLException ex) {
+                Logger.getLogger(ProgramaCentral.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        } else if (!jTextFieldConsultaNome.getText().equals("")) {
+            c.setNome(jTextFieldConsultaNome.getText());
+            try {
+                Vector<Cliente> v = ClienteDAO.consultaClienteNome(c);
+                Iterator i = v.iterator();
+                jTextAreaInformacaoConsulta.setText("Resultado da Consulta -->\n");
+                for (Cliente cliente : v) {
+                    jTextAreaInformacaoConsulta.append("\n "+cliente.getId() + "; \n Nome: " + cliente.getNome() + "\n Idade: " + cliente.getIdade()+"\n-------\n");
+                }
+                
+
+            } catch (ClassNotFoundException | FaltaParametroDeConexaoException | NaoFoiEscolhidoBancoParaConectarException | SQLException ex) {
+                Logger.getLogger(ProgramaCentral.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+
+
+
+
+
+    }//GEN-LAST:event_jButtonConsultaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -248,8 +296,8 @@ public class ProgramaCentral extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelCadastroIdade;
     private javax.swing.JLabel jLabelCadastroNome;
     private javax.swing.JLabel jLabelConsulta;
-    private javax.swing.JLabel jLabelConsultaIdade;
-    private javax.swing.JLabel jLabelConsultaNome;
+    private javax.swing.JLabel jLabelConsultaId;
+    private javax.swing.JLabel jLabelNome;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
@@ -257,7 +305,7 @@ public class ProgramaCentral extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextAreaInformacaoConsulta;
     private javax.swing.JTextField jTextFieldCadastroIdade;
     private javax.swing.JTextField jTextFieldCadastroNome;
-    private javax.swing.JTextField jTextFieldConsultaIdade;
+    private javax.swing.JTextField jTextFieldConsultaId;
     private javax.swing.JTextField jTextFieldConsultaNome;
     // End of variables declaration//GEN-END:variables
 }

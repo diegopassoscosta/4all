@@ -57,14 +57,14 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jButtonConsulta" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jLabelConsultaIdade" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabelConsultaId" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jTextFieldConsultaIdade" min="-2" pref="64" max="-2" attributes="0"/>
+                                      <Component id="jTextFieldConsultaId" min="-2" pref="138" max="-2" attributes="0"/>
                                   </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jLabelConsultaNome" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jTextFieldConsultaNome" min="-2" pref="138" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Component id="jLabelNome" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                                      <Component id="jTextFieldConsultaNome" min="-2" pref="121" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -111,13 +111,13 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jTextFieldConsultaNome" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabelConsultaNome" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextFieldConsultaId" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabelConsultaId" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabelConsultaIdade" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextFieldConsultaIdade" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabelNome" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextFieldConsultaNome" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jButtonConsulta" min="-2" max="-2" attributes="0"/>
@@ -181,9 +181,9 @@
     </Container>
     <Component class="javax.swing.JSeparator" name="jSeparator1">
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextFieldConsultaNome">
+    <Component class="javax.swing.JTextField" name="jTextFieldConsultaId">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldConsultaNomeActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldConsultaIdActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabelConsulta">
@@ -195,22 +195,18 @@
         <Property name="text" type="java.lang.String" value="Consulta"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabelConsultaIdade">
+    <Component class="javax.swing.JLabel" name="jLabelConsultaId">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Idade:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabelConsultaNome">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Nome:"/>
+        <Property name="text" type="java.lang.String" value="ID:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonConsulta">
       <Properties>
         <Property name="text" type="java.lang.String" value="Consulta"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="jTextFieldConsultaIdade">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonConsultaActionPerformed"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane2">
       <AuxValues>
@@ -227,5 +223,12 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JLabel" name="jLabelNome">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Nome:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="jTextFieldConsultaNome">
+    </Component>
   </SubComponents>
 </Form>
