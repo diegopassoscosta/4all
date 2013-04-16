@@ -206,6 +206,9 @@ public class ProgramaCentral extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldConsultaIdActionPerformed
 
     private void jButtonCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastroActionPerformed
+        //model
+        //Cliente modelo
+        //Cliente DAO modelo
         Cliente c = new Cliente();
         c.setNome(jTextFieldCadastroNome.getText());
         c.setIdade(Integer.parseInt(jTextFieldCadastroIdade.getText()));
