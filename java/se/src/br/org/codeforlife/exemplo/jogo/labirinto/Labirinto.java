@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.org.codeforlife.exemplo.jogo.quebracabeca.labirinto;
+package br.org.codeforlife.exemplo.jogo.labirinto;
 
 import java.awt.Rectangle;
 import java.awt.event.FocusListener;
@@ -33,13 +33,10 @@ public class Labirinto extends javax.swing.JFrame {
 
         jButtonBoneco = new javax.swing.JButton();
         jButtonBloco1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                formMouseDragged(evt);
-            }
-        });
 
         jButtonBoneco.setText("=)");
         jButtonBoneco.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -51,15 +48,28 @@ public class Labirinto extends javax.swing.JFrame {
         jButtonBloco1.setBackground(new java.awt.Color(51, 255, 51));
         jButtonBloco1.setText("BROCO");
 
+        jLabel1.setText("jLabel1");
+        jLabel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jLabel1MouseDragged(evt);
+            }
+        });
+
+        jLabel2.setText("jLabel2");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(85, 85, 85)
-                .addComponent(jButtonBoneco)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1)
+                    .addComponent(jButtonBoneco))
                 .addGap(106, 106, 106)
-                .addComponent(jButtonBloco1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonBloco1)
+                    .addComponent(jLabel2))
                 .addContainerGap(95, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -69,14 +79,15 @@ public class Labirinto extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonBoneco)
                     .addComponent(jButtonBloco1))
-                .addContainerGap(202, Short.MAX_VALUE))
+                .addGap(37, 37, 37)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2))
+                .addContainerGap(151, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
-    }//GEN-LAST:event_formMouseDragged
 
     private void jButtonBonecoMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonBonecoMouseDragged
 
@@ -91,7 +102,18 @@ public class Labirinto extends javax.swing.JFrame {
             jButtonBoneco.setLocation(jButtonBoneco.getX() + evt.getX(), jButtonBoneco.getY() + evt.getY());
             System.out.println(r1.getLocation());
         }
+        
     }//GEN-LAST:event_jButtonBonecoMouseDragged
+
+    private void jLabel1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseDragged
+        Rectangle r1 = jLabel1.getBounds();
+        Rectangle r2 = jLabel2.getBounds();
+
+        if (!r1.intersects(r2)) {
+           jLabel1.setLocation(jLabel1.getX() + evt.getX(), jLabel1.getY() + evt.getY());
+           System.out.println(r1.getLocation());
+        }
+    }//GEN-LAST:event_jLabel1MouseDragged
 
     /**
      * @param args the command line arguments
@@ -130,5 +152,7 @@ public class Labirinto extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBloco1;
     private javax.swing.JButton jButtonBoneco;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }
