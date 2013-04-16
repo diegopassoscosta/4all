@@ -7,7 +7,7 @@ package br.org.codeforlife.exemplo.calculadora.celso;
 
 /**
  *
- * @author Celso Barreto da Silva
+ * @author Celso Barreto
  */
 public class CalculadoraSoma {
     /**
