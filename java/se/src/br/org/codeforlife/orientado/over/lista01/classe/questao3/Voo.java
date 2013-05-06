@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.org.codeforlife.orientado.over.lista01.classe.questao3;
 
 import br.org.codeforlife.orientado.over.lista01.classe.questao2.Data;
