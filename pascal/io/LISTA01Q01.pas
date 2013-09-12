@@ -4,6 +4,6 @@ var
   nome : string;
 begin
   writeln('Ola qual e o seu nome?');
-  Readln(nome);
+  readln(nome);
   writeln('Bonito nome',nome);
 end.
