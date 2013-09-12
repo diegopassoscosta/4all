@@ -8,7 +8,7 @@
 
 int main(void){
     
-    //declaração de variaveis
+    //declaraÃ§Ã£o de variaveis
     int anos = 0;
     int meses = 0;
     int dias= 0;
@@ -19,10 +19,10 @@ int main(void){
     
     int total_de_dias_de_vida = 0;
     
-    //coleta das informações
+    //coleta das informaÃ§Ãµes
     printf("Digite os anos de vida: ");    
     scanf("%d", &anos);
-    printf("Digite so meses de vida: ");    
+    printf("Digite os meses de vida: ");    
     scanf("%d", &meses);
     printf("Digite os dias de vida: ");
     scanf("%d", &dias);    
@@ -33,7 +33,7 @@ int main(void){
     dias_em_dias = dias;
     total_de_dias_de_vida = anos_em_dias + meses_em_dias + dias_em_dias;
     
-    //demonstração dos resultados
+    //demonstraÃ§Ã£o dos resultados
     printf("Total de dias de vida %d\n", total_de_dias_de_vida);
     
     system("PAUSE");
