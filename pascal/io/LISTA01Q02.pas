@@ -13,8 +13,8 @@ var
     
 begin
     anos_em_dias := 0;
-	meses_em_dias := 0;
-	dias_em_dias := 0;
+	  meses_em_dias := 0;
+	  dias_em_dias := 0;
     {coleta das informações}
     writeln('Digite os anos de vida: ');    
     readln(anos);
