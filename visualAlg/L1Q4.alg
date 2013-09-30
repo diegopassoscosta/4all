@@ -1,11 +1,11 @@
 algoritmo "L1Q4"
-// Função :
+// FunÃ§Ã£o :
 // Autor :  SENAI
 // Data : 08/05/2012
-//4.) Declare uma variável de nome numero e atribua o valor 3 para ele.
-//Seção de Declarações
+//4.) Declare uma variÃ¡vel de nome numero e atribua o valor 3 para ele.
+//SeÃ§Ã£o de DeclaraÃ§Ãµes
 var
    numero : inteiro
 inicio
-      numero <- 3
+
 fimalgoritmo
