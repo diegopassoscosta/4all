@@ -1,1 +1,0 @@
-Select tabprofessor.nomeprof from tabprofessor where tabprofessor.nomeprof like 'Jor%';
