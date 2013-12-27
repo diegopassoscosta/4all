@@ -1,2 +1,11 @@
-1.)Fa�a o computador imprimir na tela o n�mero 33
-2.)Fa�a o computador imprimir na tela a frase: Ol� Mundo
+1.)Faça o computador imprimir na tela o número 33.
+2.)Faça o computador imprimir na tela a frase: Olá Mundo.
+3.)Faça com que o computador imprima na tela a soma de 1 + 1.
+4.)Declare uma variável de nome, numero do tipo inteiro.
+5.)Declare uma variável de nome, numero do tipo inteiro e atribua a ele o valor 3.
+6.)Declare uma variável de nome, numero do tipo inteiro, atribua a ele o valor 3, por fim, faça o 
+   programa imprimir na tela o conteúdo da variável de nome numero.
+7.)Declare uma variável de nome, nome do tipo caractere.
+8.)Declare uma variável de nome, nome do tipo caractere e atribua o valor Roberto para ele.
+9.)Declare uma variável de nome, nome do tipo caractere, atribua a ele o valor Roberto, por fim, faça o 
+   programa imprimir na tela o conteúdo da variável de nome, nome.
