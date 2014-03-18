@@ -1,3 +1,4 @@
+#Autor Diego Passos Costa
 #coding: utf-8
 #Script para povoacao de informacoes em bancos de dados.
 import random
