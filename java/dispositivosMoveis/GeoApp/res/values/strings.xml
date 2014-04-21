@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">GeoApp</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="Longitude">TextView</string>
+    <string name="latitude">Latitude</string>
+    <string name="longitude">Longitude</string>
+    <string name="button_onde_estou">Onde Estou</string>
+    <string name="textviewlatitude"></string>
+    <string name="large_text_latitude">0,0</string>
+    <string name="textviewlatitudeK">TextView</string>
+
+</resources>
