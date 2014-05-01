@@ -24,10 +24,5 @@ while q.count > 0
     count = count + 1
   end
 end
-if count == max
- result = true
-else
- result = false
-end
-return result
+return count == max
 end
