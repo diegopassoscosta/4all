@@ -31,8 +31,3 @@ else
 end
 return result
 end
-#(x.length-1).downto(0) { |i| puts x[i] }
-
-#x = x.split(//)
-#["o", "l", "a"]
-#(x.length-1).downto(0) { |i| puts x[i] }
