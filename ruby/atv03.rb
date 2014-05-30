@@ -187,7 +187,6 @@ em casos de poucas ligações.
 
 #Exercicies 04
 
-include GraphLab
  
 va = Vertex.new("A")
 vb = Vertex.new("B")
@@ -260,9 +259,27 @@ J -> G I
 
 #f)
 g2.bfs(va)
+A 
+B 
+I 
+D 
+H 
+J 
+E 
+F 
+G 
 
 #g)
 g2.dfs(va)
+A 
+B 
+D 
+H 
+E 
+F 
+G 
+J 
+I 
 
 
 
@@ -326,7 +343,7 @@ g2.addEdge(vp, vo)
 #5)
 #a
 va.adjList
-[B, C]
+[B, C, I]
 
 #c)
 
