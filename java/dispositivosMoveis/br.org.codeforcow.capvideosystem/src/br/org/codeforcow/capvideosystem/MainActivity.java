@@ -1,4 +1,6 @@
-package com.example.br.org.codeforcow.capvideosystem;
+package br.org.codeforcow.capvideosystem;
+
+import com.example.br.org.codeforcow.capvideosystem.R;
 
 import android.app.Activity;
 import android.os.Bundle;
