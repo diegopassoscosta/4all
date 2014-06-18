@@ -4,12 +4,14 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.VideoView;
 
 public class MainActivity extends Activity {
 	VideoView videoView;
-	Button ativar;
+	Button ativar, teste;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -17,7 +19,14 @@ public class MainActivity extends Activity {
 
 		videoView = (VideoView)findViewById(R.id.videoView);
 		ativar = (Button)findViewById(R.id.botaoAtivar);
-
+		teste = (Button)findViewById(R.id.button1);
+		teste.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				teste.setText("ola");
+			}		
+		});
 		//videoView.setVideoPath("http://www.ebookfrenzy.com/android_book/movie.mp4");
 
 		//MediaController mediaController = new MediaController(this);
@@ -28,8 +37,7 @@ public class MainActivity extends Activity {
 
 		
 		if (savedInstanceState == null) {
-			getFragmentManager().beginTransaction()
-					.add(R.id.container, new MainFragment()).commit();
+			getFragmentManager().beginTransaction().add(R.id.container, new MainFragment()).commit();
 		}
 	}
 

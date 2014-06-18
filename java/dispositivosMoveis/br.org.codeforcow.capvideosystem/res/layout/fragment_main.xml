@@ -15,7 +15,7 @@
         android:layout_alignLeft="@+id/videoView"
         android:layout_alignParentTop="true"
         android:layout_alignRight="@+id/videoView"
-        android:text="@string/button" />
+        android:text="@string/botaoAtivar" />
 
     <VideoView
         android:id="@+id/videoView"
