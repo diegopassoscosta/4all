@@ -1,7 +1,5 @@
 package br.org.codeforcow.capvideosystem;
 
-import com.example.br.org.codeforcow.capvideosystem.R;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -9,39 +7,47 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.MediaController;
 import android.widget.VideoView;
 
+import com.example.br.org.codeforcow.capvideosystem.R;
+
 public class MainActivity extends Activity {
-	VideoView videoView;
-	Button ativar, teste;
+	Button teste;
+	MainActivity mainActivity;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
-		videoView = (VideoView)findViewById(R.id.videoView);
-		ativar = (Button)findViewById(R.id.botaoAtivar);
+		mainActivity = this;
 		teste = (Button)findViewById(R.id.button1);
-		teste.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				teste.setText("ola");
-			}		
-		});
-		//videoView.setVideoPath("http://www.ebookfrenzy.com/android_book/movie.mp4");
-
-		//MediaController mediaController = new MediaController(this);
-		//mediaController.setAnchorView(videoView);
-		//videoView.setMediaController(mediaController);
-
-		//videoView.start();
-
+		teste.setOnClickListener(btListener);
 		
+				
 		if (savedInstanceState == null) {
-			getFragmentManager().beginTransaction().add(R.id.container, new MainFragment()).commit();
+			//getFragmentManager().beginTransaction().add(R.id.container, new VideoFragment(this)).commit();
 		}
 	}
+	
+	Button.OnClickListener btListener = new OnClickListener()
+    {
+
+        public void onClick(View v)
+        {   
+    		teste.setText("Iniciando");
+			VideoView videoView = (VideoView)findViewById(R.id.videoView1);
+			videoView.setVideoPath("http://www.ebookfrenzy.com/android_book/movie.mp4");
+
+			MediaController mediaController = new MediaController(mainActivity);
+			mediaController.setAnchorView(videoView);
+			videoView.setMediaController(mediaController);
+
+			videoView.start();
+
+        } 
+
+    };
+	 
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
