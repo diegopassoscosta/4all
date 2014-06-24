@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">VideoRoadCap</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="botaoAtivar">Ativar</string>
+    <string name="botaoAbout">Sobre</string>
+    <string name="botaoVideoInternet">Video Internet</string>
+    <string name="botaoSair">Sair</string>
+    <string name="botaoGPS">GPS</string>
+    <string name="botaoStatusGPS">Verificar</string>
+    <string name="textviewLatitude">Latitude</string>
+    <string name="textviewLongitude">Longitude</string>
+    <string name="textviewAltitude">Altitude</string>
+    <string name="textviewSatelitesVisiveis">Satelites Visiveis</string>
+    <string name="textviewSatelitesEmUso">Satelites em Uso</string>
+    <string name="textviewSatelitesVisiveisPRN">PRN dos SatelitesVisiveis</string>
+	
+    
+</resources>
