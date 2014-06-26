@@ -16,6 +16,7 @@
     <string name="textviewSatelitesVisiveis">Satelites Visiveis</string>
     <string name="textviewSatelitesEmUso">Satelites em Uso</string>
     <string name="textviewSatelitesVisiveisPRN">PRN dos SatelitesVisiveis</string>
+    <string name="botaoGoogleMap">GoogleMap</string>
 	
     
 </resources>
