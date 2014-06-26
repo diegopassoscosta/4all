@@ -35,9 +35,11 @@ public class GPSFragment extends Fragment implements LocationListener,
 	TextView satelitesEmUso;
 	Button btAtivar;
 	boolean gpsLigado = false;
-	boolean verificar = true;
-	//int visible = 0;
-	//int used = 0;
+	boolean verificar = false;
+	int visible = 0;
+	int used = 0;
+	LinearLayout mDrawingPad;
+	PNRView drawSatelite;
 	
 	public GPSFragment() {
 		super();
@@ -75,9 +77,9 @@ public class GPSFragment extends Fragment implements LocationListener,
 			
 		}
 		
-//		PNRView clasRec = new PNRView(getActivity());
-//		LinearLayout mDrawingPad=(LinearLayout)getActivity().findViewById(R.id.panel_drawing);
-//		mDrawingPad.addView(clasRec);
+		drawSatelite = new PNRView(getActivity());
+		mDrawingPad=(LinearLayout)getActivity().findViewById(R.id.panel_drawing);
+		mDrawingPad.addView(drawSatelite);
 		
 		
 		btAtivar.setOnClickListener(this);
@@ -102,8 +104,8 @@ public class GPSFragment extends Fragment implements LocationListener,
 
 	@Override
 	public void onGpsStatusChanged(int event) {
-		int visible = 0;
-		int used = 0;
+		visible = 0;
+		used = 0;
 		StringBuilder output = new StringBuilder();
 		output.append("Satelites Visíveis (PRN):");
 		GpsStatus gpss = localManager.getGpsStatus(null);
@@ -113,11 +115,13 @@ public class GPSFragment extends Fragment implements LocationListener,
 			if (sat.usedInFix())
 				used++;
 			output.append(sat.getPrn() + " ");
+			drawSatelite.setSatelitesVisiveis(sat);
 		}
 		if (verificar) {
 			satelitesVisiveis.setText("No. de Satelites Visíveis:" + visible);
 			satelitesEmUso.setText("No. de Satelites em Uso:" + used);
 			PRNsaltelitesVisiveis.setText(output.toString());
+			drawSatelite.invalidate();
 		} else {
 			satelitesVisiveis.setText("No. de Satelites Visíveis:");
 			satelitesEmUso.setText("No. de Satelites em Uso:");
@@ -169,48 +173,69 @@ public class GPSFragment extends Fragment implements LocationListener,
 	
 	//Pessima solução mas vamos apelar
 	private class PNRView extends View {
+		int coluna1, coluna2, coluna3;
 		Paint paint = new Paint();
-		Rect rect = new Rect(50, 50, 300, 300);
-		Point p = new Point(rect.centerX(),rect.centerY());
+		ArrayList<GpsSatellite> alSatelitesVisiveis = new ArrayList<GpsSatellite>();
 		
 		public PNRView(Context context) {
 			super(context);
+		}
+		
+		public void setSatelitesVisiveis(GpsSatellite sat){
+			alSatelitesVisiveis.add(sat);
 		}
 
 		@Override
 		public void onDraw(Canvas canvas) {
 			super.onDraw(canvas);
-			ArrayList<Paint> alVisiveis = new ArrayList<Paint>();
+			ArrayList<Paint> alVisible = new ArrayList<Paint>();
 			ArrayList<Paint> alPRNVisiveis = new ArrayList<Paint>();
 			
 			//bolas
-			for (int i=0; i < 10; i++){
-				alVisiveis.add(new Paint());
+			for (int i=0; i < visible; i++){
+				alVisible.add(new Paint());
 				if (i%2==0){
-					alVisiveis.get(i).setColor(Color.BLUE);
+					alVisible.get(i).setColor(Color.BLUE);
 				}else{
-					alVisiveis.get(i).setColor(Color.RED);
+					alVisible.get(i).setColor(Color.RED);
 				}
 			}
+
+			coluna1 =0;
+			coluna2 =0;
+			coluna3 =0;
 			
-			//frequencias
-			for (int i=0; i < 10; i++){
-				alPRNVisiveis.add(new Paint());
-				if (i%2==0){
-					alPRNVisiveis.get(i).setColor(Color.BLUE);
-				}else{
-					alPRNVisiveis.get(i).setColor(Color.RED);
+			for (int i = 0; i < alVisible.size(); i++) {
+				if (i < 7){
+					canvas.drawCircle(30, (coluna1+1)*45, 20, alVisible.get(i));
+					paint.setColor(Color.BLACK);
+					canvas.drawText(alSatelitesVisiveis.get(i).getPrn()+"", 20, (coluna1+1)*45, paint);
+					paint.setStrokeWidth((alSatelitesVisiveis.get(i).getPrn()));
+					paint.setColor(Color.GREEN);
+					canvas.drawLine(45, (coluna1+1)*45, 250, (coluna1+1)*45, paint);
+					
+					++coluna1;
+				}else if (i < 14){
+					canvas.drawCircle(300, (coluna2+1)*45, 20, alVisible.get(i));
+					paint.setColor(Color.BLACK);
+					canvas.drawText(alSatelitesVisiveis.get(i).getPrn()+"", 290, (coluna2+1)*45, paint);
+					paint.setStrokeWidth((alSatelitesVisiveis.get(i).getPrn()/2));
+					paint.setColor(Color.BLUE);
+					canvas.drawLine(315, (coluna2+1)*45, 500, (coluna2+1)*45, paint);
+					
+					++coluna2;
+				}else if (i < 22){
+					canvas.drawCircle(540, (coluna3+1)*45, 20, alVisible.get(i));
+					paint.setColor(Color.BLACK);
+					canvas.drawText(alSatelitesVisiveis.get(i).getPrn()+"", 530, (coluna3+1)*45, paint);
+					paint.setStrokeWidth((alSatelitesVisiveis.get(i).getPrn()/4));
+					canvas.drawLine(555, (coluna3+1)*45, 700, (coluna3+1)*45, paint);
+					paint.setColor(Color.BLUE);
+					++coluna3;
 				}
-			}
-			
-			
-			for (int i = 0; i < alVisiveis.size(); i++) {
-					canvas.drawCircle(10, (i+1)*25, 10, alVisiveis.get(i));
-					//canvas.drawLine(10, (i+1)*25, 100, (i+1)*25, paint);
 			}
 				
 		}
-			
 			
 	}
 

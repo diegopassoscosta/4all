@@ -15,7 +15,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="140dp"
+            android:layout_height="129dp"
             android:layout_gravity="bottom"
             android:background="#55AAAA"
             android:orientation="vertical" >
@@ -63,7 +63,7 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_gravity="bottom"
-            android:background="#33CCCC"
+            android:background="#FFFFFF"
             android:orientation="vertical" >
          </LinearLayout>
         
@@ -86,6 +86,12 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/botaoAtivarGPS" />
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button" />
 
     </LinearLayout>
 
