@@ -1,7 +1,14 @@
 package br.org.codeforcow.gpsworld;
 
+import java.util.ArrayList;
+
 import android.app.Fragment;
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Point;
+import android.graphics.Rect;
 import android.location.GpsSatellite;
 import android.location.GpsStatus;
 import android.location.Location;
@@ -13,6 +20,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class GPSFragment extends Fragment implements LocationListener,
@@ -27,8 +35,10 @@ public class GPSFragment extends Fragment implements LocationListener,
 	TextView satelitesEmUso;
 	Button btAtivar;
 	boolean gpsLigado = false;
-	boolean verificar = false;
-
+	boolean verificar = true;
+	//int visible = 0;
+	//int used = 0;
+	
 	public GPSFragment() {
 		super();
 	}
@@ -41,7 +51,7 @@ public class GPSFragment extends Fragment implements LocationListener,
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		btAtivar = (Button) getActivity().findViewById(R.id.button1);
+		btAtivar = (Button) getActivity().findViewById(R.id.botaoAtivarGPS);
 		latitude = (TextView) getActivity().findViewById(R.id.textViewLatitude);
 		longitude = (TextView) getActivity().findViewById(
 				R.id.textViewLongitude);
@@ -62,12 +72,14 @@ public class GPSFragment extends Fragment implements LocationListener,
 					LocationManager.GPS_PROVIDER).getName();
 			Location location = localManager
 					.getLastKnownLocation(localProvider);
-			// if (location!=null) {
-			// latitude.setText("Latitude: "+location.getLatitude());
-			// longitude.setText("Longitude: "+location.getLongitude());
-			// altitude.setText("Altitude: "+location.getAltitude());
-			// }
+			
 		}
+		
+//		PNRView clasRec = new PNRView(getActivity());
+//		LinearLayout mDrawingPad=(LinearLayout)getActivity().findViewById(R.id.panel_drawing);
+//		mDrawingPad.addView(clasRec);
+		
+		
 		btAtivar.setOnClickListener(this);
 
 	}
@@ -153,6 +165,53 @@ public class GPSFragment extends Fragment implements LocationListener,
 			btAtivar.setText("Ativar");
 		}
 
+	}
+	
+	//Pessima solução mas vamos apelar
+	private class PNRView extends View {
+		Paint paint = new Paint();
+		Rect rect = new Rect(50, 50, 300, 300);
+		Point p = new Point(rect.centerX(),rect.centerY());
+		
+		public PNRView(Context context) {
+			super(context);
+		}
+
+		@Override
+		public void onDraw(Canvas canvas) {
+			super.onDraw(canvas);
+			ArrayList<Paint> alVisiveis = new ArrayList<Paint>();
+			ArrayList<Paint> alPRNVisiveis = new ArrayList<Paint>();
+			
+			//bolas
+			for (int i=0; i < 10; i++){
+				alVisiveis.add(new Paint());
+				if (i%2==0){
+					alVisiveis.get(i).setColor(Color.BLUE);
+				}else{
+					alVisiveis.get(i).setColor(Color.RED);
+				}
+			}
+			
+			//frequencias
+			for (int i=0; i < 10; i++){
+				alPRNVisiveis.add(new Paint());
+				if (i%2==0){
+					alPRNVisiveis.get(i).setColor(Color.BLUE);
+				}else{
+					alPRNVisiveis.get(i).setColor(Color.RED);
+				}
+			}
+			
+			
+			for (int i = 0; i < alVisiveis.size(); i++) {
+					canvas.drawCircle(10, (i+1)*25, 10, alVisiveis.get(i));
+					//canvas.drawLine(10, (i+1)*25, 100, (i+1)*25, paint);
+			}
+				
+		}
+			
+			
 	}
 
 }
