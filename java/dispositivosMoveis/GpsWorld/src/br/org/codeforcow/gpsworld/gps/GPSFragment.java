@@ -1,6 +1,7 @@
-package br.org.codeforcow.gpsworld;
+package br.org.codeforcow.gpsworld.gps;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import android.app.Fragment;
 import android.content.Context;
@@ -9,12 +10,17 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Rect;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.location.GpsSatellite;
 import android.location.GpsStatus;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -22,9 +28,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import br.org.codeforcow.gpsworld.R;
 
 public class GPSFragment extends Fragment implements LocationListener,
-		GpsStatus.Listener, OnClickListener {
+		GpsStatus.Listener, OnClickListener, SensorEventListener {
 	LocationManager localManager;
 	String localProvider;
 	TextView latitude;
@@ -38,12 +45,14 @@ public class GPSFragment extends Fragment implements LocationListener,
 	Button btInformacoesGraficasAvancadas;
 	boolean gpsLigado = false;
 	boolean verificar = false;
-	int visible = 0;
-	int used = 0;
+	int visivel = 0;
+	int usados = 0;
 	LinearLayout mDrawingPad;
 	PRNView drawSatelite;
 	AZMView drawAZM;
-	
+	static SensorManager mySensorManager;
+	private boolean sersorrunning;
+
 	public GPSFragment() {
 		super();
 	}
@@ -57,9 +66,11 @@ public class GPSFragment extends Fragment implements LocationListener,
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		btAtivar = (Button) getActivity().findViewById(R.id.botaoAtivarGPS);
-		btInformacoesGraficasBasicas = (Button) getActivity().findViewById(R.id.botaoGraficoBasico);
-		btInformacoesGraficasAvancadas = (Button) getActivity().findViewById(R.id.botaoGraficoAvancado);
-		
+		btInformacoesGraficasBasicas = (Button) getActivity().findViewById(
+				R.id.botaoGraficoBasico);
+		btInformacoesGraficasAvancadas = (Button) getActivity().findViewById(
+				R.id.botaoGraficoAvancado);
+
 		latitude = (TextView) getActivity().findViewById(R.id.textViewLatitude);
 		longitude = (TextView) getActivity().findViewById(
 				R.id.textViewLongitude);
@@ -80,12 +91,27 @@ public class GPSFragment extends Fragment implements LocationListener,
 					LocationManager.GPS_PROVIDER).getName();
 			Location location = localManager
 					.getLastKnownLocation(localProvider);
-			
+
 		}
-		
+
 		drawSatelite = new PRNView(getActivity());
 		drawAZM = new AZMView(getActivity());
-		mDrawingPad=(LinearLayout)getActivity().findViewById(R.id.panel_drawing);
+		mDrawingPad = (LinearLayout) getActivity().findViewById(
+				R.id.panel_drawing);
+
+		mySensorManager = (SensorManager) getActivity().getSystemService(
+				Context.SENSOR_SERVICE);
+		List<Sensor> mySensors = mySensorManager
+				.getSensorList(Sensor.TYPE_ORIENTATION);
+
+		if (mySensors.size() > 0) {
+			mySensorManager.registerListener(this, mySensors.get(0),
+					SensorManager.SENSOR_DELAY_NORMAL);
+			sersorrunning = true;
+		} else {
+			sersorrunning = false;
+
+		}
 		
 		btAtivar.setOnClickListener(this);
 		btInformacoesGraficasBasicas.setOnClickListener(this);
@@ -110,24 +136,24 @@ public class GPSFragment extends Fragment implements LocationListener,
 
 	@Override
 	public void onGpsStatusChanged(int event) {
-		visible = 0;
-		used = 0;
+		visivel = 0;
+		usados = 0;
 		StringBuilder output = new StringBuilder();
 		output.append("Satelites Visíveis (PRN):");
 		GpsStatus gpss = localManager.getGpsStatus(null);
 		Iterable<GpsSatellite> sats = gpss.getSatellites();
-		ArrayList<GpsSatellite> alGPSSatelites = new ArrayList<GpsSatellite>(); 
+		ArrayList<GpsSatellite> alGPSSatelites = new ArrayList<GpsSatellite>();
 		for (GpsSatellite sat : sats) {
-			visible++;
+			visivel++;
 			if (sat.usedInFix())
-				used++;
+				usados++;
 			output.append(sat.getPrn() + " ");
 			alGPSSatelites.add(sat);
 		}
 		drawSatelite.setSatelitesVisiveis(alGPSSatelites);
 		if (verificar) {
-			satelitesVisiveis.setText("No. de Satelites Visíveis:" + visible);
-			satelitesEmUso.setText("No. de Satelites em Uso:" + used);
+			satelitesVisiveis.setText("No. de Satelites Visíveis:" + visivel);
+			satelitesEmUso.setText("No. de Satelites em Uso:" + usados);
 			PRNsaltelitesVisiveis.setText(output.toString());
 			drawSatelite.invalidate();
 		} else {
@@ -169,7 +195,7 @@ public class GPSFragment extends Fragment implements LocationListener,
 
 	@Override
 	public void onClick(View view) {
-		if (view == btAtivar){
+		if (view == btAtivar) {
 			if (!verificar) {
 				verificar = true;
 				btAtivar.setText("Parar");
@@ -177,30 +203,28 @@ public class GPSFragment extends Fragment implements LocationListener,
 				verificar = false;
 				btAtivar.setText("Ativar");
 			}
-		}else if (view == btInformacoesGraficasBasicas){
+		} else if (view == btInformacoesGraficasBasicas) {
 			if (verificar)
 				mDrawingPad.removeAllViews();
-				mDrawingPad.addView(drawSatelite);
-		}else if (view ==btInformacoesGraficasAvancadas){
+			mDrawingPad.addView(drawSatelite);
+		} else if (view == btInformacoesGraficasAvancadas) {
 			mDrawingPad.removeAllViews();
 			mDrawingPad.addView(drawAZM);
-			
 		}
 	}
-	
-	//Pessima solução mas vamos apelar
+
+	// Pessima solução mas vamos apelar
 	private class PRNView extends View {
 		int coluna1, coluna2, coluna3;
 		Paint paint = new Paint();
-		boolean activada = false;
-		
+
 		ArrayList<GpsSatellite> alSatelitesVisiveis = new ArrayList<GpsSatellite>();
-		
+
 		public PRNView(Context context) {
 			super(context);
 		}
-		
-		public void setSatelitesVisiveis(ArrayList<GpsSatellite> sats){
+
+		public void setSatelitesVisiveis(ArrayList<GpsSatellite> sats) {
 			alSatelitesVisiveis = sats;
 		}
 
@@ -208,85 +232,154 @@ public class GPSFragment extends Fragment implements LocationListener,
 		public void onDraw(Canvas canvas) {
 			super.onDraw(canvas);
 			ArrayList<Paint> alVisible = new ArrayList<Paint>();
-			
-			//bolas
-			for (int i=0; i < visible; i++){
+
+			// bolas
+			for (int i = 0; i < visivel; i++) {
 				alVisible.add(new Paint());
-				if (i%2==0){
+				if (i % 2 == 0) {
 					alVisible.get(i).setColor(Color.BLUE);
-				}else{
+				} else {
 					alVisible.get(i).setColor(Color.RED);
 				}
 			}
 
-			coluna1 =0;
-			coluna2 =0;
-			coluna3 =0;
-			
+			coluna1 = 0;
+			coluna2 = 0;
+			coluna3 = 0;
+
 			for (int i = 0; i < alVisible.size(); i++) {
-				if (i < 7){
-					canvas.drawCircle(30, (coluna1+1)*45, 20, alVisible.get(i));
+				if (i < 7) {
+					canvas.drawCircle(30, (coluna1 + 1) * 45, 20,
+							alVisible.get(i));
 					paint.setColor(Color.BLACK);
-					canvas.drawText(alSatelitesVisiveis.get(i).getPrn()+"", 20, (coluna1+1)*45, paint);
+					canvas.drawText(alSatelitesVisiveis.get(i).getPrn() + "",
+							20, (coluna1 + 1) * 45, paint);
 					paint.setStrokeWidth((alSatelitesVisiveis.get(i).getSnr()));
 					paint.setColor(Color.GREEN);
-					canvas.drawLine(45, (coluna1+1)*45, 250, (coluna1+1)*45, paint);
-					
+					canvas.drawLine(45, (coluna1 + 1) * 45, 250,
+							(coluna1 + 1) * 45, paint);
+
 					++coluna1;
-				}else if (i < 14){
-					canvas.drawCircle(300, (coluna2+1)*45, 20, alVisible.get(i));
+				} else if (i < 14) {
+					canvas.drawCircle(300, (coluna2 + 1) * 45, 20,
+							alVisible.get(i));
 					paint.setColor(Color.BLACK);
-					canvas.drawText(alSatelitesVisiveis.get(i).getPrn()+"", 290, (coluna2+1)*45, paint);
+					canvas.drawText(alSatelitesVisiveis.get(i).getPrn() + "",
+							290, (coluna2 + 1) * 45, paint);
 					paint.setStrokeWidth((alSatelitesVisiveis.get(i).getSnr()));
 					paint.setColor(Color.BLUE);
-					canvas.drawLine(315, (coluna2+1)*45, 500, (coluna2+1)*45, paint);
-					
+					canvas.drawLine(315, (coluna2 + 1) * 45, 500,
+							(coluna2 + 1) * 45, paint);
+
 					++coluna2;
-				}else if (i < 22){
-					canvas.drawCircle(540, (coluna3+1)*45, 20, alVisible.get(i));
+				} else if (i < 22) {
+					canvas.drawCircle(540, (coluna3 + 1) * 45, 20,
+							alVisible.get(i));
 					paint.setColor(Color.BLACK);
-					canvas.drawText(alSatelitesVisiveis.get(i).getPrn()+"", 530, (coluna3+1)*45, paint);
+					canvas.drawText(alSatelitesVisiveis.get(i).getPrn() + "",
+							530, (coluna3 + 1) * 45, paint);
 					paint.setStrokeWidth((alSatelitesVisiveis.get(i).getSnr()));
-					canvas.drawLine(555, (coluna3+1)*45, 700, (coluna3+1)*45, paint);
+					canvas.drawLine(555, (coluna3 + 1) * 45, 700,
+							(coluna3 + 1) * 45, paint);
 					paint.setColor(Color.BLUE);
 					++coluna3;
 				}
 			}
-				
-		}
-		
-		public boolean isActivada() {
-			return activada;
+
 		}
 
-		public void setActivada(boolean activada) {
-			this.activada = activada;
-		}
-			
 	}
-	
-	private class AZMView extends View {
-		boolean activada = false;
-		
-		public boolean isActivada() {
-			return activada;
-		}
 
-		public void setActivada(boolean activada) {
-			this.activada = activada;
-		}
+	private class AZMView extends View {
+		private float direction = 0;
+		private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+		private boolean firstDraw;
+		Rect rect = new Rect(50, 50, 300, 300);
+		Point p = new Point(rect.centerX(),rect.centerY());
 
 		public AZMView(Context context) {
 			super(context);
+			init();
+		}
+
+		public AZMView(Context context, AttributeSet attrs) {
+			super(context, attrs);
+			init();
+		}
+
+		public AZMView(Context context, AttributeSet attrs, int defStyle) {
+			super(context, attrs, defStyle);
+			init();
+		}
+		
+		private void init() {
+
+			//paint.setStyle(Paint.Style.STROKE);
+			//paint.setStrokeWidth(3);
+			paint.setColor(Color.BLACK);
+			//paint.setTextSize(30);
+
+			firstDraw = true;
 		}
 		
 		@Override
+		protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+			setMeasuredDimension(MeasureSpec.getSize(widthMeasureSpec),
+					MeasureSpec.getSize(heightMeasureSpec));
+		}
+
+		@Override
 		public void onDraw(Canvas canvas) {
 			super.onDraw(canvas);
+			int cxCompass = getMeasuredWidth() / 2;
+			int cyCompass = getMeasuredHeight() / 2;
+			float radiusCompass;
 
-				
-		}
+			if (cxCompass > cyCompass) {
+				radiusCompass = (float) (cyCompass * 0.9);
+			} else {
+				radiusCompass = (float) (cxCompass * 0.9);
+			}
+			paint.setColor(Color.BLACK);
+			canvas.drawCircle(cxCompass, cyCompass, radiusCompass, paint);
+			if (!firstDraw) {
+				paint.setColor(Color.WHITE);
+				canvas.drawLine(
+						cxCompass,
+						cyCompass,
+						(float) (cxCompass + radiusCompass
+								* Math.sin((double) (-direction) * 3.14 / 180)),
+						(float) (cyCompass - radiusCompass
+								* Math.cos((double) (-direction) * 3.14 / 180)),
+						paint);
+
+				canvas.drawText(String.valueOf(direction), cxCompass,
+						cyCompass, paint);
+			}
 			
+			
+			
+		}
+		
+		public void updateDirection(float dir) {
+			firstDraw = false;
+			direction = dir;
+			invalidate();
+		}
+	}
+
+	
+	
+	@Override
+	public void onSensorChanged(SensorEvent event) {
+		drawAZM.updateDirection((float)event.values[0]);
+	}
+		
+	
+
+	@Override
+	public void onAccuracyChanged(Sensor sensor, int accuracy) {
+		// TODO Auto-generated method stub
 	}
 
 }

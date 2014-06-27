@@ -9,7 +9,6 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:background="#FFFFFF"
         android:baselineAligned="false"
         android:orientation="vertical" >
 
@@ -20,24 +19,36 @@
             android:background="#55AAAA"
             android:orientation="vertical" >
 
-            <TextView
-                android:id="@+id/textViewLatitude"
-                android:layout_width="wrap_content"
+            <TableLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:text="@string/textviewLatitude" />
+                android:orientation="horizontal" >
 
-            <TextView
-                android:id="@+id/textViewLongitude"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/textviewLongitude" />
+                
+                <TextView
+                    android:id="@+id/textViewLatitude"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/textviewLatitude" />
 
-            <TextView
-                android:id="@+id/textViewAltitude"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/textviewAltitude" />
+                <TextView
+                    android:id="@+id/textViewLongitude"
+                    android:layout_width="326dp"
+                    android:layout_height="0dp"
+                    android:layout_gravity="end"
+                    android:layout_weight="1"
+                    android:text="@string/textviewLongitude" />
+
+
+                <TextView
+                    android:id="@+id/textViewAltitude"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_gravity="left"
+                    android:layout_weight="1"
+                    android:text="@string/textviewAltitude" />
+            </TableLayout>
 
             <TextView
                 android:id="@+id/textViewSatelitesVisiveis"
@@ -57,7 +68,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/textviewSatelitesVisiveisPRN" />
         </LinearLayout>
-      
+
         <LinearLayout
             android:id="@+id/panel_drawing"
             android:layout_width="fill_parent"
@@ -65,13 +76,8 @@
             android:layout_gravity="bottom"
             android:background="#FFFFFF"
             android:orientation="vertical" >
-         </LinearLayout>
-        
-        
-        
+        </LinearLayout>
     </LinearLayout>
-    
-    
 
     <LinearLayout
         android:id="@+id/layoutControle"
@@ -92,13 +98,12 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/botaoGraficoBasico" />
-        
+
         <Button
             android:id="@+id/botaoGraficoAvancado"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/botaoGraficoAvancado" />
-
     </LinearLayout>
 
 </LinearLayout>

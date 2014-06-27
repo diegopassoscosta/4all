@@ -1,5 +1,6 @@
 package br.org.codeforcow.gpsworld;
 
+import br.org.codeforcow.gpsworld.gps.GPSFragment;
 import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.os.Bundle;

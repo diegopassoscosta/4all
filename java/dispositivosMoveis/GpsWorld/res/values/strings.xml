@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">VideoRoadCap</string>
+    <string name="app_name">GPS World Cow</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="botaoAtivar">Ativar</string>
@@ -16,7 +16,7 @@
     <string name="textviewSatelitesVisiveis">Satelites Visiveis</string>
     <string name="textviewSatelitesEmUso">Satelites em Uso</string>
     <string name="textviewSatelitesVisiveisPRN">PRN dos SatelitesVisiveis</string>
-    <string name="botaoGoogleMap">GoogleMap</string>
+    <string name="botaoGoogleMap">Navegação On-Line</string>
     <string name="botaoAtivarGPS">Ativar</string>
     <string name="botaoGraficoBasico">Basico</string>
     <string name="botaoGraficoAvancado">Avançado</string>	
