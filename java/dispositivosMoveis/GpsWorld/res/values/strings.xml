@@ -18,6 +18,7 @@
     <string name="textviewSatelitesVisiveisPRN">PRN dos SatelitesVisiveis</string>
     <string name="botaoGoogleMap">GoogleMap</string>
     <string name="botaoAtivarGPS">Ativar</string>
-	
+    <string name="botaoGraficoBasico">Basico</string>
+    <string name="botaoGraficoAvancado">Avançado</string>	
     
 </resources>
