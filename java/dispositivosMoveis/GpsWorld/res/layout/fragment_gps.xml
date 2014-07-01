@@ -104,6 +104,14 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/botaoGraficoAvancado" />
+        
+            <Button
+            android:id="@+id/botaoBulsola"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/botaoBulsola" />
+
+    
     </LinearLayout>
 
 </LinearLayout>

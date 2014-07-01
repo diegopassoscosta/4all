@@ -1,5 +1,7 @@
-package br.org.codeforcow.gpsworld;
+package br.org.codeforcow.gpsworld.about;
 
+import br.org.codeforcow.gpsworld.R;
+import br.org.codeforcow.gpsworld.R.layout;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;

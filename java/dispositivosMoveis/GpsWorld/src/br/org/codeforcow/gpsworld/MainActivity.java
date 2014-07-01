@@ -1,6 +1,9 @@
 package br.org.codeforcow.gpsworld;
 
+import br.org.codeforcow.gpsworld.about.AboutFragment;
+import br.org.codeforcow.gpsworld.googlemap.GoogleMapFragment;
 import br.org.codeforcow.gpsworld.gps.GPSFragment;
+import br.org.codeforcow.gpsworld.gps.video.VideoInternetFragment;
 import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.os.Bundle;

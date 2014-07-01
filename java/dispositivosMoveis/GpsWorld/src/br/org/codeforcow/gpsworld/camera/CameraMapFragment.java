@@ -1,7 +1,9 @@
-package br.org.codeforcow.gpsworld;
+package br.org.codeforcow.gpsworld.camera;
 
 import java.io.File;
 
+import br.org.codeforcow.gpsworld.R;
+import br.org.codeforcow.gpsworld.R.layout;
 import android.app.Fragment;
 import android.content.Intent;
 import android.net.Uri;

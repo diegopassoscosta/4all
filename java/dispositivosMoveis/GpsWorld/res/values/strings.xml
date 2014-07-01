@@ -19,6 +19,8 @@
     <string name="botaoGoogleMap">Navegação On-Line</string>
     <string name="botaoAtivarGPS">Ativar</string>
     <string name="botaoGraficoBasico">Basico</string>
-    <string name="botaoGraficoAvancado">Avançado</string>	
+    <string name="botaoGraficoAvancado">Avançado</string>
+    <string name="botaoBulsola">Bulsola</string>
+    <string name="botaoOpenStreetMap">Navegação Off-Line</string>	
     
 </resources>

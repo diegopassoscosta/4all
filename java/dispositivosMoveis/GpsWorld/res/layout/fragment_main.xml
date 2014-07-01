@@ -25,6 +25,12 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/botaoGoogleMap" />
+
+        <Button
+            android:id="@+id/buttonOpenStreetMaps"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/botaoOpenStreetMap" />
         
         <Button
         android:id="@+id/botaoVideoInternet"
@@ -46,5 +52,14 @@
         
     </LinearLayout>
 
+    <include
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        layout="@layout/fragment_about" />
+
+    <include
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        layout="@layout/fragment_gps" />
     
 </LinearLayout>

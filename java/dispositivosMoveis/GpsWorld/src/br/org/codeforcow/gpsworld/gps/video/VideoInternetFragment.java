@@ -1,5 +1,9 @@
-package br.org.codeforcow.gpsworld;
+package br.org.codeforcow.gpsworld.gps.video;
 
+import br.org.codeforcow.gpsworld.MainActivity;
+import br.org.codeforcow.gpsworld.R;
+import br.org.codeforcow.gpsworld.R.id;
+import br.org.codeforcow.gpsworld.R.layout;
 import android.annotation.SuppressLint;
 import android.app.Fragment;
 import android.os.Bundle;
