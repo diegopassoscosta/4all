@@ -256,8 +256,12 @@ public class GPSFragment extends Fragment implements LocationListener,
 	// Pessima solução mas vamos apelar
 	private class PRNView extends View {
 		int coluna1, coluna2, coluna3;
-		Paint paint = new Paint();
+		Paint paintVermelho = new Paint();
+		Paint paintAzul = new Paint();
+		Paint paintLinha = new Paint();
+		Paint paintTexto = new Paint();
 
+		
 		ArrayList<GpsSatellite> alSatelitesVisiveis = new ArrayList<GpsSatellite>();
 
 		public PRNView(Context context) {
@@ -271,57 +275,50 @@ public class GPSFragment extends Fragment implements LocationListener,
 		@Override
 		public void onDraw(Canvas canvas) {
 			super.onDraw(canvas);
-			ArrayList<Paint> alVisible = new ArrayList<Paint>();
-
-			// bolas
-			for (int i = 0; i < visivel; i++) {
-				alVisible.add(new Paint());
-				if (i % 2 == 0) {
-					alVisible.get(i).setColor(Color.BLUE);
-				} else {
-					alVisible.get(i).setColor(Color.RED);
-				}
-			}
+			
+			paintAzul.setColor(Color.BLUE);
+			paintVermelho.setColor(Color.RED);
+			paintLinha.setColor(Color.GREEN);
+			paintTexto.setColor(Color.WHITE);
 
 			coluna1 = 0;
 			coluna2 = 0;
 			coluna3 = 0;
 
-			for (int i = 0; i < alVisible.size(); i++) {
+			for (int i = 0; i < visivel; i++) {
 				if (i < 7) {
-					canvas.drawCircle(30, (coluna1 + 1) * 45, 20,
-							alVisible.get(i));
-					paint.setColor(Color.BLACK);
-					canvas.drawText(alSatelitesVisiveis.get(i).getPrn() + "",
-							20, (coluna1 + 1) * 45, paint);
-					paint.setStrokeWidth((alSatelitesVisiveis.get(i).getSnr()));
-					paint.setColor(Color.GREEN);
-					canvas.drawLine(45, (coluna1 + 1) * 45, 250,
-							(coluna1 + 1) * 45, paint);
+					
+					if (alSatelitesVisiveis.get(i).getPrn() > 65 && alSatelitesVisiveis.get(i).getPrn() < 88)
+						canvas.drawCircle(30, (coluna1 + 1) * 45, 20,paintAzul);
+					else
+						canvas.drawCircle(30, (coluna1 + 1) * 45, 20,paintVermelho);
+					
+					canvas.drawText(alSatelitesVisiveis.get(i).getPrn() + "",20, (coluna1 + 1) * 45, paintTexto);
+					paintLinha.setStrokeWidth((alSatelitesVisiveis.get(i).getSnr()));
+					canvas.drawLine(45, (coluna1 + 1) * 45, 250, (coluna1 + 1) * 45, paintLinha);
 
 					++coluna1;
 				} else if (i < 14) {
-					canvas.drawCircle(300, (coluna2 + 1) * 45, 20,
-							alVisible.get(i));
-					paint.setColor(Color.BLACK);
-					canvas.drawText(alSatelitesVisiveis.get(i).getPrn() + "",
-							290, (coluna2 + 1) * 45, paint);
-					paint.setStrokeWidth((alSatelitesVisiveis.get(i).getSnr()));
-					paint.setColor(Color.BLUE);
-					canvas.drawLine(315, (coluna2 + 1) * 45, 500,
-							(coluna2 + 1) * 45, paint);
+					if (alSatelitesVisiveis.get(i).getPrn() > 65 && alSatelitesVisiveis.get(i).getPrn() < 88)
+						canvas.drawCircle(300, (coluna2 + 1) * 45, 20, paintAzul);
+					else
+						canvas.drawCircle(300, (coluna2 + 1) * 45, 20, paintVermelho);
+					
+					canvas.drawText(alSatelitesVisiveis.get(i).getPrn() + "", 290, (coluna2 + 1) * 45, paintTexto);
+					paintLinha.setStrokeWidth((alSatelitesVisiveis.get(i).getSnr()));
+					canvas.drawLine(315, (coluna2 + 1) * 45, 500, (coluna2 + 1) * 45, paintLinha);
 
 					++coluna2;
 				} else if (i < 22) {
-					canvas.drawCircle(540, (coluna3 + 1) * 45, 20,
-							alVisible.get(i));
-					paint.setColor(Color.BLACK);
-					canvas.drawText(alSatelitesVisiveis.get(i).getPrn() + "",
-							530, (coluna3 + 1) * 45, paint);
-					paint.setStrokeWidth((alSatelitesVisiveis.get(i).getSnr()));
-					canvas.drawLine(555, (coluna3 + 1) * 45, 700,
-							(coluna3 + 1) * 45, paint);
-					paint.setColor(Color.BLUE);
+					if (alSatelitesVisiveis.get(i).getPrn() > 65 && alSatelitesVisiveis.get(i).getPrn() < 88)
+						canvas.drawCircle(540, (coluna3 + 1) * 45, 20, paintAzul);
+					else
+						canvas.drawCircle(540, (coluna3 + 1) * 45, 20, paintVermelho);
+					
+					canvas.drawText(alSatelitesVisiveis.get(i).getPrn() + "",530, (coluna3 + 1) * 45, paintLinha);
+					paintLinha.setStrokeWidth((alSatelitesVisiveis.get(i).getSnr()));
+					canvas.drawLine(555, (coluna3 + 1) * 45, 700, (coluna3 + 1) * 45, paintLinha);
+					
 					++coluna3;
 				}
 			}
@@ -329,6 +326,11 @@ public class GPSFragment extends Fragment implements LocationListener,
 	}
 
 	private class AZMView extends View {
+		int coluna1, coluna2, coluna3;
+		Paint paintVermelho = new Paint();
+		Paint paintAzul = new Paint();
+		Paint paintLinha = new Paint();
+		Paint paintTexto = new Paint();
 		private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
 		private boolean primeiroDesenho;
 		ArrayList<GpsSatellite> alSatelitesVisiveis = new ArrayList<GpsSatellite>();
@@ -368,41 +370,68 @@ public class GPSFragment extends Fragment implements LocationListener,
 		@Override
 		public void onDraw(Canvas canvas) {
 			super.onDraw(canvas);
-			int cxCirculo = getMeasuredWidth() / 2;
-			int cyCirculo = getMeasuredHeight() / 2;
-			
-			
-			double xs = (double) (Math.sin(alSatelitesVisiveis.get(2).getAzimuth()) * Math.sin(alSatelitesVisiveis.get(2)
-					.getElevation()));
-			double ys = (double) (Math.cos(alSatelitesVisiveis.get(2).getAzimuth()) * Math.cos(alSatelitesVisiveis.get(2)
-					.getElevation()));
-			
-			double xi = -xs + cxCirculo;
-			double yi = -ys + cyCirculo;
-			
-			float raioCirculo;
+						
+			/////////
 
-			if (cxCirculo > cyCirculo) {
-				raioCirculo = (float) (cyCirculo * 0.9);
-			} else {
-				raioCirculo = (float) (cxCirculo * 0.9);
-			}
-			paint.setColor(Color.BLACK);
-			canvas.drawCircle(cxCirculo, cyCirculo, raioCirculo, paint);
-			if (!primeiroDesenho) {
-				double sen = xi;
-				double cos = yi;
-				paint.setColor(Color.WHITE);
-				canvas.drawLine(cxCirculo, cyCirculo,
-						(float) (cxCirculo + raioCirculo * sen),
-						(float) (cyCirculo - raioCirculo * cos), paint);
+			paintAzul.setColor(Color.BLUE);
+			paintVermelho.setColor(Color.RED);
+			paintLinha.setColor(Color.GREEN);
+			paintTexto.setColor(Color.WHITE);
 
-				canvas.drawText(
-						String.valueOf(alSatelitesVisiveis.get(2).getPrn()),
-						cxCirculo, cyCirculo, paint);
+			coluna1 = 0;
+			coluna2 = 0;
+			coluna3 = 0;
+			
+			double cxCirculo =0;
+			double cyCirculo =0;
+			float  raioCirculo = 0;
+			
+			for (int i = 0; i < visivel; i++) {
+				if (i < 7) {
+					cxCirculo = 30;
+					cyCirculo = (coluna1 + 1) * 45;
+					raioCirculo = 20;
+					if (alSatelitesVisiveis.get(i).getPrn() > 65 && alSatelitesVisiveis.get(i).getPrn() < 88)
+						canvas.drawCircle((float)cxCirculo, (float)cyCirculo, 20,paintAzul);
+					else
+						canvas.drawCircle((float)cxCirculo, (float)cyCirculo, 20,paintVermelho);
+					
+					canvas.drawText(alSatelitesVisiveis.get(i).getPrn() + "",20, (coluna1 + 1) * 45, paintTexto);
+					
+					
+					double xs = (double) (Math.sin(alSatelitesVisiveis.get(i).getAzimuth()) * Math.sin(alSatelitesVisiveis.get(i).getElevation()));
+					double ys = (double) (Math.cos(alSatelitesVisiveis.get(i).getAzimuth()) * Math.cos(alSatelitesVisiveis.get(i).getElevation()));
+
+					double xi = -xs + cxCirculo;
+					double yi = -ys + cyCirculo;
+			
+					canvas.drawLine((float)cxCirculo+raioCirculo, (float)cyCirculo+raioCirculo, (float)xi, (float)yi, paintLinha);			
+					
+					++coluna1;
+				} else if (i < 14) {
+					if (alSatelitesVisiveis.get(i).getPrn() > 65 && alSatelitesVisiveis.get(i).getPrn() < 88)
+						canvas.drawCircle(300, (coluna2 + 1) * 45, 20, paintAzul);
+					else
+						canvas.drawCircle(300, (coluna2 + 1) * 45, 20, paintVermelho);
+					
+					canvas.drawText(alSatelitesVisiveis.get(i).getPrn() + "", 290, (coluna2 + 1) * 45, paintTexto);
+					paintLinha.setStrokeWidth((alSatelitesVisiveis.get(i).getSnr()));
+					
+
+					++coluna2;
+				} else if (i < 22) {
+					if (alSatelitesVisiveis.get(i).getPrn() > 65 && alSatelitesVisiveis.get(i).getPrn() < 88)
+						canvas.drawCircle(540, (coluna3 + 1) * 45, 20, paintAzul);
+					else
+						canvas.drawCircle(540, (coluna3 + 1) * 45, 20, paintVermelho);
+					
+					canvas.drawText(alSatelitesVisiveis.get(i).getPrn() + "",530, (coluna3 + 1) * 45, paintLinha);
+					
+				}
+					
 			}
-			primeiroDesenho = false;
 		}
+			
 	}
 
 	private class BulsolaView extends View {

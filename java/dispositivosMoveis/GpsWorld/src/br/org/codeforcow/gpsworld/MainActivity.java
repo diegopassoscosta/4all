@@ -3,11 +3,11 @@ package br.org.codeforcow.gpsworld;
 import java.util.HashMap;
 import java.util.Map;
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -17,7 +17,7 @@ import br.org.codeforcow.gpsworld.googlemap.GoogleMapFragment;
 import br.org.codeforcow.gpsworld.gps.GPSFragment;
 import br.org.codeforcow.gpsworld.gps.video.VideoInternetFragment;
 
-public class MainActivity extends Activity implements Communicator,
+public class MainActivity extends FragmentActivity implements Communicator,
 		OnClickListener {
 
 	Map<String, Fragment> fragments = new HashMap<String, Fragment>();
@@ -39,6 +39,7 @@ public class MainActivity extends Activity implements Communicator,
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_fragment);
+		if (savedInstanceState == null){
 		manager = getFragmentManager();
 		btVideoGPS = (Button) findViewById(R.id.botaoVideoGPS);
 		btGoogleMap = (Button) findViewById(R.id.botaoGoogleMap);
@@ -46,11 +47,38 @@ public class MainActivity extends Activity implements Communicator,
 		btVideoSobre = (Button) findViewById(R.id.botaoVideoSobre);
 		btVideoSair = (Button) findViewById(R.id.botaoVideoSair);
 
+		gpsFragment = new GPSFragment();
+		aboutFragment = new AboutFragment();
+		gmFragment = new GoogleMapFragment();
+		viFragment = new VideoInternetFragment();
+		
+		FragmentTransaction ft = manager.beginTransaction();
+		
+		ft.add(R.id.container, gmFragment, "gmFragment");
+		ft.addToBackStack("addGMFragment");
+		fragments.put("gmFragment", gmFragment);
+		
+		ft.replace(R.id.container, viFragment, "viFragment");
+		ft.addToBackStack("addVIFragment");
+		fragments.put("viFragment", viFragment);
+		
+		ft.replace(R.id.container, aboutFragment, "aboutFragment");
+		ft.addToBackStack("addABOUTFragment");
+		fragments.put("aboutFragment", aboutFragment);
+		
+		ft.replace(R.id.container, gpsFragment, "gpsFragment");
+		ft.addToBackStack("addGPSFragment");
+		fragments.put("gpsFragment", gpsFragment);
+		
+		ft.commit();
+		
+		
 		btVideoGPS.setOnClickListener(this);
 		btGoogleMap.setOnClickListener(this);
 		btVideoInternet.setOnClickListener(this);
 		btVideoSobre.setOnClickListener(this);
 		btVideoSair.setOnClickListener(this);
+		}
 	}
 
 	public void addGPSFragment(View v) {
@@ -61,7 +89,7 @@ public class MainActivity extends Activity implements Communicator,
 				ft.add(R.id.container, gpsFragment, "gpsFragment");
 				ft.addToBackStack("addGPSFragment");
 				fragments.put("gpsFragment", gpsFragment);
-			}else{
+			}else{			
 				ft.replace(R.id.container, gpsFragment, "gpsFragment");
 			}
 			ft.commit();
@@ -73,23 +101,45 @@ public class MainActivity extends Activity implements Communicator,
 	}
 
 	public void addGoogleFragment(View v) {
-		gmFragment = new GoogleMapFragment();
-		FragmentTransaction ft = manager.beginTransaction();
-		ft.add(R.id.container, gmFragment, "gmFragment");
-		ft.addToBackStack("addGMFragment");
-		ft.commit();
+		if (gmFragment == null) {
+			gmFragment = new GoogleMapFragment();
+			FragmentTransaction ft = manager.beginTransaction();
+			if (fragments.isEmpty()){
+				ft.add(R.id.container, gmFragment, "gmFragment");
+				ft.addToBackStack("addGMFragment");
+				fragments.put("gmFragment", gmFragment);
+			}else{
+				ft.replace(R.id.container, gmFragment, "gmFragment");
+			}
+			ft.commit();
+		}else{
+			FragmentTransaction ft = manager.beginTransaction();
+			ft.replace(R.id.container, gmFragment, "gmFragment");
+			ft.commit();
+		}
+		
 	}
 
 	public void addVideoFragment(View v) {
-		viFragment = new VideoInternetFragment();
-		FragmentTransaction ft = manager.beginTransaction();
-		ft.add(R.id.container, viFragment, "viFragment");
-		ft.addToBackStack("addVIFragment");
-		ft.commit();
+		if (viFragment == null) {
+			viFragment = new VideoInternetFragment();
+			FragmentTransaction ft = manager.beginTransaction();
+			if (fragments.isEmpty()){
+				ft.add(R.id.container, viFragment, "viFragment");
+				ft.addToBackStack("addVIFragment");
+				fragments.put("viFragment", viFragment);
+			}else{
+				ft.replace(R.id.container, viFragment, "viFragment");
+			}
+			ft.commit();
+		}else{
+			FragmentTransaction ft = manager.beginTransaction();
+			ft.replace(R.id.container, viFragment, "viFragment");
+			ft.commit();
+		}
 	}
 
 	public void addAboutFragment(View v) {
-		
 		if (aboutFragment == null) {
 			aboutFragment = new AboutFragment();
 			FragmentTransaction ft = manager.beginTransaction();
@@ -115,11 +165,11 @@ public class MainActivity extends Activity implements Communicator,
 
 	@Override
 	public void respond(String data) {
-		Toast.makeText(this, "oal", Toast.LENGTH_LONG).show();
-		FragmentManager manager = getFragmentManager();
-		GoogleMapFragment fe = new GoogleMapFragment(this);
-		manager.beginTransaction().replace(R.id.container, fe);
-		manager.beginTransaction().commit();
+		Toast.makeText(this, data, Toast.LENGTH_LONG).show();
+		FragmentTransaction ft = manager.beginTransaction();
+		GoogleMapFragment fe = (GoogleMapFragment)manager.findFragmentByTag("gmFragment");
+		ft.replace(R.id.container, fe, "gmFragment");
+		ft.commit();
 		fe.changeText(data);
 	}
 
