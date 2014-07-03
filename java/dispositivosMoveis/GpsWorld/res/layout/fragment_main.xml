@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal" 
-    
     >
 
     <LinearLayout
@@ -51,15 +50,4 @@
     	android:text="@string/botaoSair" />
         
     </LinearLayout>
-
-    <include
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        layout="@layout/fragment_about" />
-
-    <include
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        layout="@layout/fragment_gps" />
-    
 </LinearLayout>
