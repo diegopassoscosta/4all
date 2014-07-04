@@ -27,9 +27,9 @@ public class MainActivity extends FragmentActivity implements Communicator,
 	VideoInternetFragment viFragment;
 	AboutFragment aboutFragment;
 
-	Button btVideoGPS;
+	Button btGPS;
 	Button btGoogleMap;
-	Button btVideoInternet;
+	Button btLogGPS;
 	Button btVideoSobre;
 	Button btVideoSair;
 
@@ -41,11 +41,11 @@ public class MainActivity extends FragmentActivity implements Communicator,
 		setContentView(R.layout.activity_fragment);
 		if (savedInstanceState == null){
 		manager = getFragmentManager();
-		btVideoGPS = (Button) findViewById(R.id.botaoVideoGPS);
-		btGoogleMap = (Button) findViewById(R.id.botaoGoogleMap);
-		btVideoInternet = (Button) findViewById(R.id.botaoVideoInternet);
-		btVideoSobre = (Button) findViewById(R.id.botaoVideoSobre);
-		btVideoSair = (Button) findViewById(R.id.botaoVideoSair);
+		btGPS = (Button) findViewById(R.id.botaoMAINGPS);
+		btGoogleMap = (Button) findViewById(R.id.botaoMAINGoogleMap);
+		btLogGPS = (Button) findViewById(R.id.botaoMAINLogGPS);
+		btVideoSobre = (Button) findViewById(R.id.botaoMAINSobre);
+		btVideoSair = (Button) findViewById(R.id.botaoMAINSair);
 
 		gpsFragment = new GPSFragment();
 		aboutFragment = new AboutFragment();
@@ -73,9 +73,9 @@ public class MainActivity extends FragmentActivity implements Communicator,
 		ft.commit();
 		
 		
-		btVideoGPS.setOnClickListener(this);
+		btGPS.setOnClickListener(this);
 		btGoogleMap.setOnClickListener(this);
-		btVideoInternet.setOnClickListener(this);
+		btLogGPS.setOnClickListener(this);
 		btVideoSobre.setOnClickListener(this);
 		btVideoSair.setOnClickListener(this);
 		}
@@ -168,18 +168,18 @@ public class MainActivity extends FragmentActivity implements Communicator,
 		Toast.makeText(this, data, Toast.LENGTH_LONG).show();
 		FragmentTransaction ft = manager.beginTransaction();
 		GoogleMapFragment fe = (GoogleMapFragment)manager.findFragmentByTag("gmFragment");
-		ft.replace(R.id.container, fe, "gmFragment");
+		//ft.replace(R.id.container, fe, "gmFragment");
 		ft.commit();
 		fe.changeText(data);
 	}
 
 	@Override
 	public void onClick(View view) {
-		if (view == btVideoGPS) {
+		if (view == btGPS) {
 			addGPSFragment(view);
 		} else if (view == btGoogleMap) {
 			addGoogleFragment(view);
-		} else if (view == btVideoInternet) {
+		} else if (view == btLogGPS) {
 			addVideoFragment(view);
 		} else if (view == btVideoSobre) {
 			addAboutFragment(view);

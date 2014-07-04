@@ -69,11 +69,11 @@ public class GPSFragment extends Fragment implements LocationListener,
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		if (savedInstanceState == null) {
-			Toast.makeText(getActivity(), "text -1", Toast.LENGTH_LONG).show();
+			//Toast.makeText(getActivity(), "text -1", Toast.LENGTH_LONG).show();
 			verificar = false;
 		} else {
 			verificar = savedInstanceState.getBoolean("gpsAtivado");
-			Toast.makeText(getActivity(), "text 1", Toast.LENGTH_LONG).show();
+			//Toast.makeText(getActivity(), "text 1", Toast.LENGTH_LONG).show();
 		}
 
 	}
@@ -150,8 +150,6 @@ public class GPSFragment extends Fragment implements LocationListener,
 	public void onResume() {
 		super.onResume();
 		if (gpsLigado) {
-			// Toast.makeText(getActivity(), "text -1.1",
-			// Toast.LENGTH_LONG).show();
 			localManager.requestLocationUpdates(localProvider, 60000, 1, this);
 			localManager.addGpsStatusListener(this);
 			
@@ -261,7 +259,6 @@ public class GPSFragment extends Fragment implements LocationListener,
 		Paint paintLinha = new Paint();
 		Paint paintTexto = new Paint();
 
-		
 		ArrayList<GpsSatellite> alSatelitesVisiveis = new ArrayList<GpsSatellite>();
 
 		public PRNView(Context context) {

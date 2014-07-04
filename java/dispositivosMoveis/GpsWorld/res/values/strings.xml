@@ -21,6 +21,10 @@
     <string name="botaoGraficoBasico">Basico</string>
     <string name="botaoGraficoAvancado">Avançado</string>
     <string name="botaoBulsola">Bulsola</string>
-    <string name="botaoOpenStreetMap">Navegação Off-Line</string>	
+    <string name="botaoOpenStreetMap">Navegação Off-Line</string>
+    <string name="satelites_visiveis">Satelites Visiveis:</string>
+    <string name="satelites_usados_google_maps">Satelites Usados:</string>
+    <string name="text_view_prn_usado_google_map">PRNs:</string>
+    <string name="botaonLog">GPS Log</string>	
     
 </resources>
