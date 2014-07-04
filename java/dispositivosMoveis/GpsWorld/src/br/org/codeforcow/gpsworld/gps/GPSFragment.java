@@ -97,7 +97,7 @@ public class GPSFragment extends Fragment implements LocationListener,
 				R.id.textViewLongitude);
 		altitude = (TextView) getActivity().findViewById(R.id.textViewAltitude);
 		satelitesVisiveis = (TextView) getActivity().findViewById(
-				R.id.textViewSatelitesVisiveis);
+				R.id.textViewSatelitesVisiveisGoogle);
 		PRNsaltelitesVisiveis = (TextView) getActivity().findViewById(
 				R.id.textViewPRNSatelitesVisiveis);
 		satelitesEmUso = (TextView) getActivity().findViewById(
@@ -108,7 +108,6 @@ public class GPSFragment extends Fragment implements LocationListener,
 
 		if (localManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
 			gpsLigado = true;
-			// interrogação
 			localProvider = localManager.getProvider(
 					LocationManager.GPS_PROVIDER).getName();
 			Location location = localManager

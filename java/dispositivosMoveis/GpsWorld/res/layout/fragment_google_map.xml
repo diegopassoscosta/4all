@@ -20,47 +20,71 @@
         android:visibility="gone" />
 
     <TextView
-        android:id="@+id/textViewSatelitesVisiveis"
+        android:id="@+id/textViewSatelitesVisiveisGoogle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:background="#77FF0000"
+        android:background="#66007FFF"
         android:text="@string/satelites_visiveis"
         android:textAppearance="?android:attr/textAppearanceSmallInverse"
-        android:textColor="#42C920"
+        android:textColor="#FFFFFF"
         android:textSize="13sp" />
 
     <TextView
-        android:id="@+id/textViewSatelitesUsados"
+        android:id="@+id/textViewSatelitesUsadosGoogle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:background="#77FF0000"
-        android:layout_below="@+id/textViewSatelitesVisiveis"
-        android:textColor="#42C920"
+        android:layout_below="@+id/textViewSatelitesVisiveisGoogle"
+        android:background="#66007FFF"
         android:text="@string/satelites_usados_google_maps"
+        android:textColor="#FFFFFF"
         android:textSize="13sp" />
 
     <TextView
         android:id="@+id/textViewPRNUsados"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignRight="@+id/textViewSatelitesUsados"
-        android:layout_below="@+id/textViewSatelitesUsados"
-        android:background="#77FF0000"
+        android:layout_alignRight="@+id/textViewSatelitesUsadosGoogle"
+        android:layout_below="@+id/textViewSatelitesUsadosGoogle"
+        android:background="#66007FFF"
         android:text="@string/text_view_prn_usado_google_map"
-        android:textColor="#42C920" />
+        android:textColor="#FFFFFF" />
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/textViewLatitudeGoogle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textViewPRNUsados"
+        android:layout_alignBottom="@+id/textViewLongitudeGoogle"
         android:layout_marginLeft="75dp"
-        android:layout_marginTop="84dp"
         android:layout_toRightOf="@+id/textViewPRNUsados"
-        android:text="TextView" />
+        android:background="#66007FFF"
+        android:text="@string/text_view_latitude_googl_map"
+        android:textColor="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/textViewLongitudeGoogle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="11dp"
+        android:background="#66007FFF"
+        android:textColor="#FFFFFF"
+        android:layout_toRightOf="@+id/textViewLatitudeGoogle"
+        android:text="@string/text_view_longitude_google_map" />
+
+    <TextView
+        android:id="@+id/textViewAltitudeGoogle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="15dp"
+        android:layout_toRightOf="@+id/textViewLongitudeGoogle"
+        android:background="#66007FFF"
+        android:text="@string/text_view_altitude_google_map"
+        android:textColor="#FFFFFF" />
 
 </RelativeLayout>
