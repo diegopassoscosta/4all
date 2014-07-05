@@ -6,6 +6,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Context;
 import android.graphics.Point;
+import android.location.Criteria;
 import android.location.GpsSatellite;
 import android.location.GpsStatus;
 import android.location.Location;
@@ -34,7 +35,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class GoogleMapFragment extends Fragment implements OnMapClickListener,
 		LocationListener, GpsStatus.Listener {
-	boolean gpsLigado = true;
+	boolean gpsLigado;
 	String localProvider;
 	LocationManager localManager;
 	Location location;
@@ -67,14 +68,17 @@ public class GoogleMapFragment extends Fragment implements OnMapClickListener,
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
+		View rootView;
 		if (savedInstanceState == null) {
 			Toast.makeText(getActivity(), "null", Toast.LENGTH_LONG).show();
 		} else {
 			Toast.makeText(getActivity(), "not null", Toast.LENGTH_LONG).show();
 		}
 
-		View rootView = inflater.inflate(R.layout.fragment_google_map,
-				container, false);
+		if (verificaConexao())
+			rootView = inflater.inflate(R.layout.fragment_google_map,container, false);
+		else 
+			rootView = null;
 		return rootView;
 
 	}
@@ -87,7 +91,7 @@ public class GoogleMapFragment extends Fragment implements OnMapClickListener,
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 
-		if (savedInstanceState == null) {
+		if (savedInstanceState == null && verificaConexao()) {
 			
 			satelitesVisiveis = (TextView) getActivity().findViewById(
 					R.id.textViewSatelitesVisiveisGoogle);
@@ -99,49 +103,59 @@ public class GoogleMapFragment extends Fragment implements OnMapClickListener,
 			longitude = (TextView) getActivity().findViewById(R.id.textViewLongitudeGoogle);
 			altitude = (TextView) getActivity().findViewById(R.id.textViewAltitudeGoogle);
 
+			
+			FragmentManager myFragmentManager = getFragmentManager();
+			MapFragment myMapFragment = (MapFragment) myFragmentManager
+					.findFragmentById(R.id.id_fragment_google_map);
+			myMap = myMapFragment.getMap();
+			myMap.clear();
+			myMap.setOnMapClickListener(this);
+			
 			localManager = (LocationManager) getActivity().getSystemService(
 					Context.LOCATION_SERVICE);
-
+			
 			if (localManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
 				gpsLigado = true;
-				// interrogação
-				localProvider = localManager.getProvider(
-						LocationManager.GPS_PROVIDER).getName();
-				location = localManager
-						.getLastKnownLocation(localProvider);
-				FragmentManager myFragmentManager = getFragmentManager();
-				MapFragment myMapFragment = (MapFragment) myFragmentManager
-						.findFragmentById(R.id.id_fragment_google_map);
-				myMap = myMapFragment.getMap();
+				
+				Criteria criterio = new Criteria();
+				//criterio.setAccuracy(Criteria.ACCURACY_HIGH);
+				//criterio.setSpeedAccuracy(Criteria.ACCURACY_HIGH);
+				//criterio.setPowerRequirement(Criteria.POWER_HIGH);
+				localProvider = localManager.getBestProvider(criterio, false);
+				//localProvider = localManager.getProvider(LocationManager.GPS_PROVIDER).getName();
+				location = localManager.getLastKnownLocation(localProvider);
+				
+				//forcando
+				if ( location == null ) {
+		        	location = localManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+		        }
+
+		        if ( location == null ) {
+		            location = localManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+		        }
+		        if ( location == null ) {
+		            location = localManager.getLastKnownLocation(LocationManager.PASSIVE_PROVIDER);
+		        }
+				
 				myMap.clear();
 				marker = new MarkerOptions()
-						.position(
-								new LatLng(location.getLatitude(), location
-										.getLongitude()))
+						.position(new LatLng(location.getLatitude(), location.getLongitude()))
 						.title("Hello Maps ")
-						.icon(BitmapDescriptorFactory
-								.fromResource(R.drawable.cow_marker));
+						.icon(BitmapDescriptorFactory.fromResource(R.drawable.cow_marker));
 				myMap.addMarker(marker);
-				CameraUpdate center = CameraUpdateFactory.newLatLng(new LatLng(
-						location.getLatitude(), location.getLongitude()));
+				CameraUpdate center = CameraUpdateFactory.newLatLng(new LatLng(location.getLatitude(), location.getLongitude()));
 				CameraUpdate zoom = CameraUpdateFactory.zoomTo(20);
 				
 				myMap.moveCamera(center);
 				myMap.animateCamera(zoom);
-				myMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
-				
-				//projection = myMap.getProjection();
-				//screenPosition = projection.toScreenLocation(marker.getPosition());
-
-
-				myMap.setOnMapClickListener(this);
+				myMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);		
 			} else {
 				// interrogacao
 			}
 
 		}
-		Toast.makeText(getActivity(), ":-->KK" + data, Toast.LENGTH_LONG)
-				.show();
+		
+		Toast.makeText(getActivity(), ":-> " + data, Toast.LENGTH_LONG).show();
 		boolean b = verificaConexao();
 		Toast.makeText(getActivity(), b + "", Toast.LENGTH_LONG).show();
 	}
@@ -152,7 +166,6 @@ public class GoogleMapFragment extends Fragment implements OnMapClickListener,
 		if (gpsLigado) {
 			localManager.requestLocationUpdates(localProvider, 60000, 1, this);
 			localManager.addGpsStatusListener(this);
-
 		}
 	}
 
@@ -172,8 +185,6 @@ public class GoogleMapFragment extends Fragment implements OnMapClickListener,
 		
 		screenPosition = projection.toScreenLocation(melbourne.getPosition());
 		latitude.setText(screenPosition+"");
-		
-		
 	}
 
 	@Override
@@ -199,12 +210,22 @@ public class GoogleMapFragment extends Fragment implements OnMapClickListener,
 			alGPSSatelites.add(sat);
 		}
 		// drawSatelite.setSatelitesVisiveis(alGPSSatelites);
+		myMap.clear();
 		satelitesVisiveis.setText("Satelites Visíveis:" + visivel);
 		satelitesEmUso.setText("Satelites em Uso:" + usados);
 		PRNsaltelitesVisiveis.setText(output.toString());
-		
+		myMap.clear();
 		projection = myMap.getProjection();
 		screenPosition = projection.toScreenLocation(marker.getPosition());
+		marker = new MarkerOptions()
+		.position(
+				new LatLng(location.getLatitude(), 
+						location.getLongitude()))
+		.title("Hello Maps ")
+		.icon(BitmapDescriptorFactory
+				.fromResource(R.drawable.cow_marker));
+		myMap.addMarker(marker);
+		
 		latitude.setText("latitude: " +location.getLatitude());
 		latitude.setX(screenPosition.x);
 		latitude.setY(screenPosition.y);
@@ -216,13 +237,35 @@ public class GoogleMapFragment extends Fragment implements OnMapClickListener,
 		altitude.setText("Altitude: " +location.getAltitude());
 		altitude.setX(screenPosition.x-40);
 		altitude.setY(screenPosition.y-120);
-		
 	}
 
 	@Override
 	public void onLocationChanged(Location location) {
-		// TODO Auto-generated method stub
-
+		myMap.clear();
+		projection = myMap.getProjection();
+		screenPosition = projection.toScreenLocation(marker.getPosition());
+		marker = new MarkerOptions()
+		.position(
+				new LatLng(location.getLatitude(), 
+						location.getLongitude()))
+		.title("Hello Maps ")
+		.icon(BitmapDescriptorFactory
+				.fromResource(R.drawable.cow_marker));
+		myMap.addMarker(marker);
+		
+		latitude.setText("latitude: " +location.getLatitude());
+		latitude.setX(screenPosition.x);
+		latitude.setY(screenPosition.y);
+		
+		longitude.setText("Longitude: " +location.getLongitude());
+		longitude.setX(screenPosition.x+40);
+		longitude.setY(screenPosition.y+120);
+		
+		altitude.setText("Altitude: " +location.getAltitude());
+		altitude.setX(screenPosition.x-40);
+		altitude.setY(screenPosition.y-120);
+		onGpsStatusChanged(1);
+		
 	}
 
 	@Override
@@ -260,6 +303,7 @@ public class GoogleMapFragment extends Fragment implements OnMapClickListener,
 	@Override
 	public void onDestroyView() {
 		super.onDestroyView();
+		Toast.makeText(getActivity(), "lalalalalalalalala", Toast.LENGTH_LONG).show();
 		MapFragment f = (MapFragment) getFragmentManager().findFragmentById(
 				R.id.id_fragment_google_map);
 		if (f != null)

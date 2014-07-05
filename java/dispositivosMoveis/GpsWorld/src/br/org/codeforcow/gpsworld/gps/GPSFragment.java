@@ -72,8 +72,9 @@ public class GPSFragment extends Fragment implements LocationListener,
 			//Toast.makeText(getActivity(), "text -1", Toast.LENGTH_LONG).show();
 			verificar = false;
 		} else {
-			verificar = savedInstanceState.getBoolean("gpsAtivado");
-			//Toast.makeText(getActivity(), "text 1", Toast.LENGTH_LONG).show();
+			//verificar = savedInstanceState.getBoolean("gpsAtivado");
+			//btAtivar.setText(savedInstanceState.getCharSequence("txtBtAtivar"));
+			//Toast.makeText(getActivity(), btAtivar.getText(), Toast.LENGTH_LONG).show();
 		}
 
 	}
@@ -81,68 +82,72 @@ public class GPSFragment extends Fragment implements LocationListener,
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		if (savedInstanceState != null) {
-			// savedInstanceState
+		if (savedInstanceState == null) {
+			com = (Communicator) getActivity();
+			btAtivar = (Button) getActivity().findViewById(R.id.botaoAtivarGPS);
+			btInformacoesGraficasBasicas = (Button) getActivity().findViewById(
+					R.id.botaoGraficoBasico);
+			btInformacoesGraficasAvancadas = (Button) getActivity().findViewById(
+					R.id.botaoGraficoAvancado);
+			btBulsola = (Button) getActivity().findViewById(R.id.botaoBulsola);
+
+			latitude = (TextView) getActivity().findViewById(R.id.textViewLatitude);
+			longitude = (TextView) getActivity().findViewById(
+					R.id.textViewLongitude);
+			altitude = (TextView) getActivity().findViewById(R.id.textViewAltitude);
+			satelitesVisiveis = (TextView) getActivity().findViewById(
+					R.id.textViewSatelitesVisiveisGoogle);
+			PRNsaltelitesVisiveis = (TextView) getActivity().findViewById(
+					R.id.textViewPRNSatelitesVisiveis);
+			satelitesEmUso = (TextView) getActivity().findViewById(
+					R.id.textViewSatelitesEmUso);
+
+			localManager = (LocationManager) getActivity().getSystemService(
+					Context.LOCATION_SERVICE);
+
+			if (localManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+				gpsLigado = true;
+				localProvider = localManager.getProvider(
+						LocationManager.GPS_PROVIDER).getName();
+				Location location = localManager
+						.getLastKnownLocation(localProvider);
+				latitude.setText("Latitude: ");
+				longitude.setText("Longitude: ");
+				altitude.setText("Altitude: ");
+				if (location !=null) onLocationChanged(location);
+				//verificar = true;
+			} else {
+				Toast.makeText(getActivity(), "SEU APARELHO ESTA\n COM O GPS DESLIGADO ", Toast.LENGTH_LONG).show();
+				
+			}
+
+			// VIEWS
+			drawSatelite = new PRNView(getActivity());
+			drawAZM = new AZMView(getActivity());
+			drawBulsola = new BulsolaView(getActivity());
+
+			mDrawingPad = (LinearLayout) getActivity().findViewById(
+					R.id.panel_drawing);
+
+			// bulsola
+			mySensorManager = (SensorManager) getActivity().getSystemService(
+					Context.SENSOR_SERVICE);
+			List<Sensor> mySensors = mySensorManager
+					.getSensorList(Sensor.TYPE_ORIENTATION);
+			if (mySensors.size() > 0) {
+				mySensorManager.registerListener(this, mySensors.get(0),
+						SensorManager.SENSOR_DELAY_NORMAL);
+				sersorrunning = true;
+			} else {
+				sersorrunning = false;
+			}
+
+			btAtivar.setOnClickListener(this);
+			btInformacoesGraficasBasicas.setOnClickListener(this);
+			btInformacoesGraficasAvancadas.setOnClickListener(this);
+			btBulsola.setOnClickListener(this);
 		}
-		com = (Communicator) getActivity();
-		btAtivar = (Button) getActivity().findViewById(R.id.botaoAtivarGPS);
-		btInformacoesGraficasBasicas = (Button) getActivity().findViewById(
-				R.id.botaoGraficoBasico);
-		btInformacoesGraficasAvancadas = (Button) getActivity().findViewById(
-				R.id.botaoGraficoAvancado);
-		btBulsola = (Button) getActivity().findViewById(R.id.botaoBulsola);
-
-		latitude = (TextView) getActivity().findViewById(R.id.textViewLatitude);
-		longitude = (TextView) getActivity().findViewById(
-				R.id.textViewLongitude);
-		altitude = (TextView) getActivity().findViewById(R.id.textViewAltitude);
-		satelitesVisiveis = (TextView) getActivity().findViewById(
-				R.id.textViewSatelitesVisiveisGoogle);
-		PRNsaltelitesVisiveis = (TextView) getActivity().findViewById(
-				R.id.textViewPRNSatelitesVisiveis);
-		satelitesEmUso = (TextView) getActivity().findViewById(
-				R.id.textViewSatelitesEmUso);
-
-		localManager = (LocationManager) getActivity().getSystemService(
-				Context.LOCATION_SERVICE);
-
-		if (localManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-			gpsLigado = true;
-			localProvider = localManager.getProvider(
-					LocationManager.GPS_PROVIDER).getName();
-			Location location = localManager
-					.getLastKnownLocation(localProvider);
-		} else {
-			// interrogacao
-		}
-
-		// VIEWS
-		drawSatelite = new PRNView(getActivity());
-		drawAZM = new AZMView(getActivity());
-		drawBulsola = new BulsolaView(getActivity());
-
-		mDrawingPad = (LinearLayout) getActivity().findViewById(
-				R.id.panel_drawing);
-
-		// bulsola
-		mySensorManager = (SensorManager) getActivity().getSystemService(
-				Context.SENSOR_SERVICE);
-		List<Sensor> mySensors = mySensorManager
-				.getSensorList(Sensor.TYPE_ORIENTATION);
-
-		if (mySensors.size() > 0) {
-			mySensorManager.registerListener(this, mySensors.get(0),
-					SensorManager.SENSOR_DELAY_NORMAL);
-			sersorrunning = true;
-		} else {
-			sersorrunning = false;
-
-		}
-		// fim bulsola
-		btAtivar.setOnClickListener(this);
-		btInformacoesGraficasBasicas.setOnClickListener(this);
-		btInformacoesGraficasAvancadas.setOnClickListener(this);
-		btBulsola.setOnClickListener(this);
+		
 	}
 
 	@Override
@@ -151,7 +156,6 @@ public class GPSFragment extends Fragment implements LocationListener,
 		if (gpsLigado) {
 			localManager.requestLocationUpdates(localProvider, 60000, 1, this);
 			localManager.addGpsStatusListener(this);
-			
 		}
 	};
 
@@ -195,14 +199,10 @@ public class GPSFragment extends Fragment implements LocationListener,
 
 	@Override
 	public void onLocationChanged(Location location) {
-		if (verificar) {
+		if (verificar){
 			latitude.setText("Latitude: " + location.getLatitude());
 			longitude.setText("Longitude: " + location.getLongitude());
 			altitude.setText("Altitude: " + location.getAltitude());
-		} else {
-			latitude.setText("Latitude: ");
-			longitude.setText("Longitude: ");
-			altitude.setText("Altitude: ");
 		}
 	}
 
@@ -226,7 +226,7 @@ public class GPSFragment extends Fragment implements LocationListener,
 	@Override
 	public void onClick(View view) {
 		if (view == btAtivar) {
-			if (!verificar) {
+			if (!verificar && gpsLigado) {
 				verificar = true;
 				btAtivar.setText("Parar");
 				com.respond("teste");
@@ -272,8 +272,8 @@ public class GPSFragment extends Fragment implements LocationListener,
 		public void onDraw(Canvas canvas) {
 			super.onDraw(canvas);
 			
-			paintAzul.setColor(Color.BLUE);
-			paintVermelho.setColor(Color.RED);
+			paintAzul.setColor(Color.argb(240, 152, 198, 245));
+			paintVermelho.setColor(Color.argb(200, 159, 54, 54));
 			paintLinha.setColor(Color.GREEN);
 			paintTexto.setColor(Color.WHITE);
 
@@ -281,8 +281,8 @@ public class GPSFragment extends Fragment implements LocationListener,
 			coluna2 = 0;
 			coluna3 = 0;
 
-			for (int i = 0; i < visivel; i++) {
-				if (i < 7) {
+			for (int i = 0; i < alSatelitesVisiveis.size(); i++) {
+				if (i < 8) {
 					
 					if (alSatelitesVisiveis.get(i).getPrn() > 65 && alSatelitesVisiveis.get(i).getPrn() < 88)
 						canvas.drawCircle(30, (coluna1 + 1) * 45, 20,paintAzul);
@@ -294,7 +294,7 @@ public class GPSFragment extends Fragment implements LocationListener,
 					canvas.drawLine(45, (coluna1 + 1) * 45, 250, (coluna1 + 1) * 45, paintLinha);
 
 					++coluna1;
-				} else if (i < 14) {
+				} else if (i < 16) {
 					if (alSatelitesVisiveis.get(i).getPrn() > 65 && alSatelitesVisiveis.get(i).getPrn() < 88)
 						canvas.drawCircle(300, (coluna2 + 1) * 45, 20, paintAzul);
 					else
@@ -305,13 +305,13 @@ public class GPSFragment extends Fragment implements LocationListener,
 					canvas.drawLine(315, (coluna2 + 1) * 45, 500, (coluna2 + 1) * 45, paintLinha);
 
 					++coluna2;
-				} else if (i < 22) {
+				} else if (i < 30) {
 					if (alSatelitesVisiveis.get(i).getPrn() > 65 && alSatelitesVisiveis.get(i).getPrn() < 88)
 						canvas.drawCircle(540, (coluna3 + 1) * 45, 20, paintAzul);
 					else
 						canvas.drawCircle(540, (coluna3 + 1) * 45, 20, paintVermelho);
 					
-					canvas.drawText(alSatelitesVisiveis.get(i).getPrn() + "",530, (coluna3 + 1) * 45, paintLinha);
+					canvas.drawText(alSatelitesVisiveis.get(i).getPrn() + "",530, (coluna3 + 1) * 45, paintTexto);
 					paintLinha.setStrokeWidth((alSatelitesVisiveis.get(i).getSnr()));
 					canvas.drawLine(555, (coluna3 + 1) * 45, 700, (coluna3 + 1) * 45, paintLinha);
 					
@@ -369,9 +369,9 @@ public class GPSFragment extends Fragment implements LocationListener,
 						
 			/////////
 
-			paintAzul.setColor(Color.BLUE);
-			paintVermelho.setColor(Color.RED);
-			paintLinha.setColor(Color.GREEN);
+			paintAzul.setColor(Color.argb(240, 152, 198, 245));
+			paintVermelho.setColor(Color.argb(200, 159, 54, 54));
+			paintLinha.setColor(Color.WHITE);
 			paintTexto.setColor(Color.WHITE);
 
 			coluna1 = 0;
@@ -381,9 +381,8 @@ public class GPSFragment extends Fragment implements LocationListener,
 			double cxCirculo =0;
 			double cyCirculo =0;
 			float  raioCirculo = 0;
-			
-			for (int i = 0; i < visivel; i++) {
-				if (i < 7) {
+			for (int i = 0; i < alSatelitesVisiveis.size(); i++) {
+				if (i < 8) {
 					cxCirculo = 30;
 					cyCirculo = (coluna1 + 1) * 45;
 					raioCirculo = 20;
@@ -401,28 +400,49 @@ public class GPSFragment extends Fragment implements LocationListener,
 					double xi = -xs + cxCirculo;
 					double yi = -ys + cyCirculo;
 			
-					canvas.drawLine((float)cxCirculo+raioCirculo, (float)cyCirculo+raioCirculo, (float)xi, (float)yi, paintLinha);			
+					canvas.drawLine((float)cxCirculo, (float)cyCirculo, (float)cxCirculo+raioCirculo *(float)xi, (float)cyCirculo+raioCirculo * (float)yi, paintLinha);			
 					
 					++coluna1;
-				} else if (i < 14) {
+				} else if (i < 16) {
+					
+					cxCirculo = 300;
+					cyCirculo = (coluna2 + 1) * 45;
+					raioCirculo = 20;
+					
 					if (alSatelitesVisiveis.get(i).getPrn() > 65 && alSatelitesVisiveis.get(i).getPrn() < 88)
-						canvas.drawCircle(300, (coluna2 + 1) * 45, 20, paintAzul);
+						canvas.drawCircle((float)cxCirculo, (float)cyCirculo, 20,paintAzul);
 					else
-						canvas.drawCircle(300, (coluna2 + 1) * 45, 20, paintVermelho);
+						canvas.drawCircle((float)cxCirculo, (float)cyCirculo, 20,paintVermelho);
 					
-					canvas.drawText(alSatelitesVisiveis.get(i).getPrn() + "", 290, (coluna2 + 1) * 45, paintTexto);
-					paintLinha.setStrokeWidth((alSatelitesVisiveis.get(i).getSnr()));
-					
+					double xs = (double) (Math.sin(alSatelitesVisiveis.get(i).getAzimuth()) * Math.sin(alSatelitesVisiveis.get(i).getElevation()));
+					double ys = (double) (Math.cos(alSatelitesVisiveis.get(i).getAzimuth()) * Math.cos(alSatelitesVisiveis.get(i).getElevation()));
 
+					double xi = -xs + cxCirculo;
+					double yi = -ys + cyCirculo;
+			
+					canvas.drawText(alSatelitesVisiveis.get(i).getPrn()+"",(float)cxCirculo, (float)cyCirculo, paintTexto);
+					canvas.drawLine((float)cxCirculo, (float)cyCirculo, (float)cxCirculo+raioCirculo *(float)xi, (float)cyCirculo+raioCirculo * (float)yi, paintLinha);			
+										
 					++coluna2;
-				} else if (i < 22) {
+				} else if (i < 30) {
+					cxCirculo = 540;
+					cyCirculo = (coluna3 + 1) * 45;
+					raioCirculo = 20;
+					
 					if (alSatelitesVisiveis.get(i).getPrn() > 65 && alSatelitesVisiveis.get(i).getPrn() < 88)
-						canvas.drawCircle(540, (coluna3 + 1) * 45, 20, paintAzul);
+						canvas.drawCircle((float)cxCirculo, (float)cyCirculo, 20,paintAzul);
 					else
-						canvas.drawCircle(540, (coluna3 + 1) * 45, 20, paintVermelho);
+						canvas.drawCircle((float)cxCirculo, (float)cyCirculo, 20,paintVermelho);
 					
-					canvas.drawText(alSatelitesVisiveis.get(i).getPrn() + "",530, (coluna3 + 1) * 45, paintLinha);
-					
+					double xs = (double) (Math.sin(alSatelitesVisiveis.get(i).getAzimuth()) * Math.sin(alSatelitesVisiveis.get(i).getElevation()));
+					double ys = (double) (Math.cos(alSatelitesVisiveis.get(i).getAzimuth()) * Math.cos(alSatelitesVisiveis.get(i).getElevation()));
+
+					double xi = -xs + cxCirculo;
+					double yi = -ys + cyCirculo;
+			
+					canvas.drawText(alSatelitesVisiveis.get(i).getPrn()+"",(float)cxCirculo, (float)cyCirculo, paintTexto);
+					canvas.drawLine((float)cxCirculo, (float)cyCirculo, (float)cxCirculo+raioCirculo *(float)xi, (float)cyCirculo+raioCirculo * (float)yi, paintLinha);			
+					++coluna3;
 				}
 					
 			}
@@ -482,9 +502,11 @@ public class GPSFragment extends Fragment implements LocationListener,
 
 	@Override
 	public void onSaveInstanceState(Bundle outState) {
-		super.onSaveInstanceState(outState);
+		
 		outState.putBoolean("gpsAtivado", verificar);
-		// Toast.makeText(getActivity(), "text 0", Toast.LENGTH_LONG).show();
+		outState.putCharSequence("txtBtAtivar", btAtivar.getText());
+		Toast.makeText(getActivity(), "text 0", Toast.LENGTH_LONG).show();
+		super.onSaveInstanceState(outState);
 	}
 
 	@Override

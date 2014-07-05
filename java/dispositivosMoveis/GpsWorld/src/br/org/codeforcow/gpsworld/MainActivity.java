@@ -15,25 +15,29 @@ import android.widget.Toast;
 import br.org.codeforcow.gpsworld.about.AboutFragment;
 import br.org.codeforcow.gpsworld.googlemap.GoogleMapFragment;
 import br.org.codeforcow.gpsworld.gps.GPSFragment;
-import br.org.codeforcow.gpsworld.gps.video.VideoInternetFragment;
+import br.org.codeforcow.gpsworld.log.LogFragment;
+import br.org.codeforcow.gpsworld.welcome.WelcomeFragment;
 
 public class MainActivity extends FragmentActivity implements Communicator,
 		OnClickListener {
 
 	Map<String, Fragment> fragments = new HashMap<String, Fragment>();
 	
+	WelcomeFragment welcomeFragment;
 	GPSFragment gpsFragment;
 	GoogleMapFragment gmFragment;
-	VideoInternetFragment viFragment;
 	AboutFragment aboutFragment;
-
+	LogFragment logFragment;
+	
 	Button btGPS;
 	Button btGoogleMap;
 	Button btLogGPS;
-	Button btVideoSobre;
-	Button btVideoSair;
+	Button btSobre;
+	Button btSair;
 
 	FragmentManager manager;
+
+	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -44,31 +48,41 @@ public class MainActivity extends FragmentActivity implements Communicator,
 		btGPS = (Button) findViewById(R.id.botaoMAINGPS);
 		btGoogleMap = (Button) findViewById(R.id.botaoMAINGoogleMap);
 		btLogGPS = (Button) findViewById(R.id.botaoMAINLogGPS);
-		btVideoSobre = (Button) findViewById(R.id.botaoMAINSobre);
-		btVideoSair = (Button) findViewById(R.id.botaoMAINSair);
+		btSobre = (Button) findViewById(R.id.botaoMAINSobre);
+		btSair = (Button) findViewById(R.id.botaoMAINSair);
 
+		welcomeFragment = new WelcomeFragment();
 		gpsFragment = new GPSFragment();
 		aboutFragment = new AboutFragment();
 		gmFragment = new GoogleMapFragment();
-		viFragment = new VideoInternetFragment();
+		logFragment = new LogFragment();
 		
 		FragmentTransaction ft = manager.beginTransaction();
 		
 		ft.add(R.id.container, gmFragment, "gmFragment");
-		ft.addToBackStack("addGMFragment");
+		ft.addToBackStack(null);
+		//ft.addToBackStack("addGMFragment");
 		fragments.put("gmFragment", gmFragment);
 		
-		ft.replace(R.id.container, viFragment, "viFragment");
-		ft.addToBackStack("addVIFragment");
-		fragments.put("viFragment", viFragment);
+		ft.replace(R.id.container, logFragment, "logFragment");
+		ft.addToBackStack(null);
+		//ft.addToBackStack("addVIFragment");
+		fragments.put("logFragment", logFragment);
 		
 		ft.replace(R.id.container, aboutFragment, "aboutFragment");
-		ft.addToBackStack("addABOUTFragment");
+		ft.addToBackStack(null);
+		//ft.addToBackStack("addABOUTFragment");
 		fragments.put("aboutFragment", aboutFragment);
 		
 		ft.replace(R.id.container, gpsFragment, "gpsFragment");
-		ft.addToBackStack("addGPSFragment");
+		ft.addToBackStack(null);
+		//ft.addToBackStack("addGPSFragment");
 		fragments.put("gpsFragment", gpsFragment);
+		
+		ft.replace(R.id.container, welcomeFragment, "welcomeFragment");
+		ft.addToBackStack(null);
+		//ft.addToBackStack("addGPSFragment");
+		fragments.put("welcomeFragment", welcomeFragment);
 		
 		ft.commit();
 		
@@ -76,8 +90,8 @@ public class MainActivity extends FragmentActivity implements Communicator,
 		btGPS.setOnClickListener(this);
 		btGoogleMap.setOnClickListener(this);
 		btLogGPS.setOnClickListener(this);
-		btVideoSobre.setOnClickListener(this);
-		btVideoSair.setOnClickListener(this);
+		btSobre.setOnClickListener(this);
+		btSair.setOnClickListener(this);
 		}
 	}
 
@@ -120,21 +134,21 @@ public class MainActivity extends FragmentActivity implements Communicator,
 		
 	}
 
-	public void addVideoFragment(View v) {
-		if (viFragment == null) {
-			viFragment = new VideoInternetFragment();
+	public void addLogFragment(View v) {
+		if (logFragment == null) {
+			logFragment = new LogFragment();
 			FragmentTransaction ft = manager.beginTransaction();
 			if (fragments.isEmpty()){
-				ft.add(R.id.container, viFragment, "viFragment");
+				ft.add(R.id.container, logFragment, "logFragment");
 				ft.addToBackStack("addVIFragment");
-				fragments.put("viFragment", viFragment);
+				fragments.put("viFragment", logFragment);
 			}else{
-				ft.replace(R.id.container, viFragment, "viFragment");
+				ft.replace(R.id.container, logFragment, "logFragment");
 			}
 			ft.commit();
 		}else{
 			FragmentTransaction ft = manager.beginTransaction();
-			ft.replace(R.id.container, viFragment, "viFragment");
+			ft.replace(R.id.container, logFragment, "logFragment");
 			ft.commit();
 		}
 	}
@@ -180,10 +194,10 @@ public class MainActivity extends FragmentActivity implements Communicator,
 		} else if (view == btGoogleMap) {
 			addGoogleFragment(view);
 		} else if (view == btLogGPS) {
-			addVideoFragment(view);
-		} else if (view == btVideoSobre) {
+			addLogFragment(view);
+		} else if (view == btSobre) {
 			addAboutFragment(view);
-		} else if (view == btVideoSair) {
+		} else if (view == btSair) {
 			sair(view);
 		}
 

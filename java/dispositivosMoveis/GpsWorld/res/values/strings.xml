@@ -28,6 +28,8 @@
     <string name="botaonLog">GPS Log</string>
     <string name="text_view_latitude_googl_map">latitude:</string>
     <string name="text_view_longitude_google_map">Longitude:</string>
-    <string name="text_view_altitude_google_map">Altitude:</string>	
+    <string name="text_view_altitude_google_map">Altitude:</string>
+    <string name="large_text_welcome">GPS World</string>
+    <string name="text_view_about_autores">Desenvolvido p</string>	
     
 </resources>
