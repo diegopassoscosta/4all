@@ -303,7 +303,7 @@ public class GoogleMapFragment extends Fragment implements OnMapClickListener,
 	@Override
 	public void onDestroyView() {
 		super.onDestroyView();
-		Toast.makeText(getActivity(), "lalalalalalalalala", Toast.LENGTH_LONG).show();
+		Toast.makeText(getActivity(), "destruido", Toast.LENGTH_LONG).show();
 		MapFragment f = (MapFragment) getFragmentManager().findFragmentById(
 				R.id.id_fragment_google_map);
 		if (f != null)

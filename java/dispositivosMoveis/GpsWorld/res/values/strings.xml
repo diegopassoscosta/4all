@@ -30,6 +30,9 @@
     <string name="text_view_longitude_google_map">Longitude:</string>
     <string name="text_view_altitude_google_map">Altitude:</string>
     <string name="large_text_welcome">GPS World</string>
-    <string name="text_view_about_autores">Desenvolvido p</string>	
+    <string name="text_view_about_autores">Desenvolvido p</string>
+    <string name="mapa_manoel_dias">Mapa Manoel Dias</string>
+    <string name="botao_zoom_out">Zoom Out</string>
+    <string name="botao_zoom_in">"Zoom In "</string>	
     
 </resources>

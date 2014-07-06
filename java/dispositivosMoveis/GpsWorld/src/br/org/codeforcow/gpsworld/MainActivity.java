@@ -16,6 +16,7 @@ import br.org.codeforcow.gpsworld.about.AboutFragment;
 import br.org.codeforcow.gpsworld.googlemap.GoogleMapFragment;
 import br.org.codeforcow.gpsworld.gps.GPSFragment;
 import br.org.codeforcow.gpsworld.log.LogFragment;
+import br.org.codeforcow.gpsworld.navofflline.StreetMapFragment;
 import br.org.codeforcow.gpsworld.welcome.WelcomeFragment;
 
 public class MainActivity extends FragmentActivity implements Communicator,
@@ -26,16 +27,20 @@ public class MainActivity extends FragmentActivity implements Communicator,
 	WelcomeFragment welcomeFragment;
 	GPSFragment gpsFragment;
 	GoogleMapFragment gmFragment;
+	StreetMapFragment smFragment;
 	AboutFragment aboutFragment;
 	LogFragment logFragment;
 	
 	Button btGPS;
 	Button btGoogleMap;
+	Button btStreetMap;
 	Button btLogGPS;
 	Button btSobre;
 	Button btSair;
 
 	FragmentManager manager;
+
+	
 
 	
 	
@@ -47,6 +52,7 @@ public class MainActivity extends FragmentActivity implements Communicator,
 		manager = getFragmentManager();
 		btGPS = (Button) findViewById(R.id.botaoMAINGPS);
 		btGoogleMap = (Button) findViewById(R.id.botaoMAINGoogleMap);
+		btStreetMap = (Button) findViewById(R.id.buttonMAINOpenStreetMaps);
 		btLogGPS = (Button) findViewById(R.id.botaoMAINLogGPS);
 		btSobre = (Button) findViewById(R.id.botaoMAINSobre);
 		btSair = (Button) findViewById(R.id.botaoMAINSair);
@@ -55,6 +61,7 @@ public class MainActivity extends FragmentActivity implements Communicator,
 		gpsFragment = new GPSFragment();
 		aboutFragment = new AboutFragment();
 		gmFragment = new GoogleMapFragment();
+		smFragment = new StreetMapFragment();
 		logFragment = new LogFragment();
 		
 		FragmentTransaction ft = manager.beginTransaction();
@@ -62,7 +69,12 @@ public class MainActivity extends FragmentActivity implements Communicator,
 		ft.add(R.id.container, gmFragment, "gmFragment");
 		ft.addToBackStack(null);
 		//ft.addToBackStack("addGMFragment");
-		fragments.put("gmFragment", gmFragment);
+		
+		fragments.put("smFragment", smFragment);
+		ft.replace(R.id.container, smFragment, "smFragment");
+		ft.addToBackStack(null);
+		//ft.addToBackStack("addGMFragment");
+		fragments.put("smFragment", smFragment);
 		
 		ft.replace(R.id.container, logFragment, "logFragment");
 		ft.addToBackStack(null);
@@ -89,6 +101,7 @@ public class MainActivity extends FragmentActivity implements Communicator,
 		
 		btGPS.setOnClickListener(this);
 		btGoogleMap.setOnClickListener(this);
+		btStreetMap.setOnClickListener(this);
 		btLogGPS.setOnClickListener(this);
 		btSobre.setOnClickListener(this);
 		btSair.setOnClickListener(this);
@@ -172,6 +185,26 @@ public class MainActivity extends FragmentActivity implements Communicator,
 		}
 
 	}
+	
+	public void addOpenStreetMapFragment(View v) {
+		if (smFragment == null) {
+			smFragment = new StreetMapFragment();
+			FragmentTransaction ft = manager.beginTransaction();
+			if (fragments.isEmpty()){
+				ft.add(R.id.container, smFragment, "smFragment");
+				ft.addToBackStack("addSTREETMAPFragment");
+				fragments.put("smFragment", smFragment);
+			}else{
+				ft.replace(R.id.container, smFragment, "smFragment");
+			}
+			ft.commit();
+		}else{
+			FragmentTransaction ft = manager.beginTransaction();
+			ft.replace(R.id.container, smFragment, "smFragment");
+			ft.commit();
+		}
+
+	}
 
 	public void sair(View v) {
 		this.finish();
@@ -193,6 +226,8 @@ public class MainActivity extends FragmentActivity implements Communicator,
 			addGPSFragment(view);
 		} else if (view == btGoogleMap) {
 			addGoogleFragment(view);
+		} else if (view == btStreetMap) {
+			addOpenStreetMapFragment(view);
 		} else if (view == btLogGPS) {
 			addLogFragment(view);
 		} else if (view == btSobre) {

@@ -90,11 +90,12 @@ int drawable ic_plusone_small_off_client 0x7f02001b
 int drawable ic_plusone_standard_off_client 0x7f02001c
 int drawable ic_plusone_tall_off_client 0x7f02001d
 int drawable icelandic_ocea 0x7f02001e
-int drawable powered_by_google_dark 0x7f02001f
-int drawable powered_by_google_light 0x7f020020
-int id action_settings 0x7f060034
+int drawable map_manoel_dias 0x7f02001f
+int drawable powered_by_google_dark 0x7f020020
+int drawable powered_by_google_light 0x7f020021
+int id action_settings 0x7f060036
 int id book_now 0x7f060010
-int id botaoAtivar 0x7f060032
+int id botaoAtivar 0x7f060035
 int id botaoAtivarGPS 0x7f06002d
 int id botaoBulsola 0x7f060030
 int id botaoGraficoAvancado 0x7f06002f
@@ -104,6 +105,8 @@ int id botaoMAINGoogleMap 0x7f060016
 int id botaoMAINLogGPS 0x7f060018
 int id botaoMAINSair 0x7f06001a
 int id botaoMAINSobre 0x7f060019
+int id botaoZoomIn 0x7f060033
+int id botaoZoomOut 0x7f060032
 int id buttonMAINOpenStreetMaps 0x7f060017
 int id buyButton 0x7f06000a
 int id buy_now 0x7f06000f
@@ -115,7 +118,7 @@ int id holo_dark 0x7f060005
 int id holo_light 0x7f060006
 int id hybrid 0x7f060004
 int id id_fragment_google_map 0x7f06001d
-int id imageView1 0x7f060033
+int id imageView1 0x7f060031
 int id layoutControle 0x7f06002c
 int id layoutInfoSatText 0x7f060025
 int id match_parent 0x7f06000c
@@ -142,7 +145,7 @@ int id textViewPRNUsados 0x7f060021
 int id textViewSatelitesEmUso 0x7f060029
 int id textViewSatelitesUsadosGoogle 0x7f060020
 int id textViewSatelitesVisiveisGoogle 0x7f06001f
-int id videoView 0x7f060031
+int id videoView 0x7f060034
 int id view1 0x7f06001e
 int id wrap_content 0x7f06000d
 int integer google_play_services_version 0x7f070000
@@ -176,6 +179,8 @@ int string botaoOpenStreetMap 0x7f040034
 int string botaoSair 0x7f040026
 int string botaoStatusGPS 0x7f040028
 int string botaoVideoInternet 0x7f040025
+int string botao_zoom_in 0x7f040040
+int string botao_zoom_out 0x7f04003f
 int string botaonLog 0x7f040038
 int string common_google_play_services_enable_button 0x7f040011
 int string common_google_play_services_enable_text 0x7f040010
@@ -204,6 +209,7 @@ int string common_signin_button_text 0x7f04001d
 int string common_signin_button_text_long 0x7f04001e
 int string hello_world 0x7f040021
 int string large_text_welcome 0x7f04003c
+int string mapa_manoel_dias 0x7f04003e
 int string satelites_usados_google_maps 0x7f040036
 int string satelites_visiveis 0x7f040035
 int string text_view_about_autores 0x7f04003d
