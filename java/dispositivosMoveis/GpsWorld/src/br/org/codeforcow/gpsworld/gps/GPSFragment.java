@@ -1,8 +1,9 @@
 package br.org.codeforcow.gpsworld.gps;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
-
 import android.app.Fragment;
 import android.content.Context;
 import android.graphics.Canvas;
@@ -29,6 +30,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 import br.org.codeforcow.gpsworld.Communicator;
 import br.org.codeforcow.gpsworld.R;
+import br.org.codeforcow.gpsworld.log.bd.Coordenada;
+import br.org.codeforcow.gpsworld.log.bd.Sessao;
+import br.org.codeforcow.gpsworld.log.bd.dao.CoordenadaDAO;
+import br.org.codeforcow.gpsworld.log.bd.dao.SessaoDAO;
 
 public class GPSFragment extends Fragment implements LocationListener,
 		GpsStatus.Listener, OnClickListener, SensorEventListener {
@@ -60,6 +65,9 @@ public class GPSFragment extends Fragment implements LocationListener,
 	BulsolaView drawBulsola;
 	static SensorManager mySensorManager;
 	private boolean sersorrunning;
+	
+	Sessao sessao;
+	SessaoDAO DAO;
 
 	public GPSFragment() {
 		super();
@@ -83,7 +91,13 @@ public class GPSFragment extends Fragment implements LocationListener,
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		if (savedInstanceState == null) {
+			DAO =  new SessaoDAO(getActivity());
+			SimpleDateFormat dataFormatada = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+			Calendar cal = Calendar.getInstance();
+			sessao = new Sessao(0, dataFormatada.format(cal.getTime()));
+			sessao.setId(DAO.insert(sessao));
 			com = (Communicator) getActivity();
+			
 			btAtivar = (Button) getActivity().findViewById(R.id.botaoAtivarGPS);
 			btInformacoesGraficasBasicas = (Button) getActivity().findViewById(
 					R.id.botaoGraficoBasico);
@@ -146,6 +160,10 @@ public class GPSFragment extends Fragment implements LocationListener,
 			btInformacoesGraficasBasicas.setOnClickListener(this);
 			btInformacoesGraficasAvancadas.setOnClickListener(this);
 			btBulsola.setOnClickListener(this);
+			
+			
+		}else{
+
 		}
 		
 	}
@@ -200,6 +218,16 @@ public class GPSFragment extends Fragment implements LocationListener,
 	@Override
 	public void onLocationChanged(Location location) {
 		if (verificar){
+			Coordenada cordenada;
+			CoordenadaDAO DAO;
+			SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+			Calendar cal = Calendar.getInstance();
+			DAO = new CoordenadaDAO(getActivity());
+			
+	        if (sessao.getId() > 0){
+	        	cordenada = new Coordenada(0, location.getLatitude(), location.getLongitude(), location.getAltitude(), dateFormat.format(cal.getTime()), sessao);
+	        	cordenada.setId(DAO.insert(cordenada));
+	        }
 			latitude.setText("Latitude: " + location.getLatitude());
 			longitude.setText("Longitude: " + location.getLongitude());
 			altitude.setText("Altitude: " + location.getAltitude());

@@ -1,6 +1,8 @@
 package br.org.codeforcow.gpsworld.googlemap;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -21,6 +23,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 import br.org.codeforcow.gpsworld.R;
 import br.org.codeforcow.gpsworld.gps.GPSFragment;
+import br.org.codeforcow.gpsworld.log.bd.Coordenada;
+import br.org.codeforcow.gpsworld.log.bd.Sessao;
+import br.org.codeforcow.gpsworld.log.bd.dao.CoordenadaDAO;
+import br.org.codeforcow.gpsworld.log.bd.dao.SessaoDAO;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -56,11 +62,8 @@ public class GoogleMapFragment extends Fragment implements OnMapClickListener,
 	GPSFragment gpsFragment = null;
 	
 	String data;
-
-	public GoogleMapFragment(GPSFragment gpsFragment) {
-		super();
-		this.gpsFragment = gpsFragment;
-	}
+	SessaoDAO DAO;
+	Sessao sessao;
 
 	public GoogleMapFragment() {
 		super();
@@ -92,6 +95,11 @@ public class GoogleMapFragment extends Fragment implements OnMapClickListener,
 		super.onActivityCreated(savedInstanceState);
 
 		if (savedInstanceState == null && verificaConexao()) {
+			DAO =  new SessaoDAO(getActivity());
+			SimpleDateFormat dataFormatada = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+			Calendar cal = Calendar.getInstance();
+			sessao = new Sessao(0, dataFormatada.format(cal.getTime()));
+			sessao.setId(DAO.insert(sessao));
 			
 			satelitesVisiveis = (TextView) getActivity().findViewById(
 					R.id.textViewSatelitesVisiveisGoogle);
@@ -108,6 +116,7 @@ public class GoogleMapFragment extends Fragment implements OnMapClickListener,
 			MapFragment myMapFragment = (MapFragment) myFragmentManager
 					.findFragmentById(R.id.id_fragment_google_map);
 			myMap = myMapFragment.getMap();
+			
 			myMap.clear();
 			myMap.setOnMapClickListener(this);
 			
@@ -241,6 +250,16 @@ public class GoogleMapFragment extends Fragment implements OnMapClickListener,
 
 	@Override
 	public void onLocationChanged(Location location) {
+		Coordenada cordenada;
+		CoordenadaDAO DAO;
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+		Calendar cal = Calendar.getInstance();
+		DAO = new CoordenadaDAO(getActivity());
+		
+        if (sessao.getId() > 0){
+        	cordenada = new Coordenada(0, location.getLatitude(), location.getLongitude(), location.getAltitude(), dateFormat.format(cal.getTime()), sessao);
+        	cordenada.setId(DAO.insert(cordenada));
+        }
 		myMap.clear();
 		projection = myMap.getProjection();
 		screenPosition = projection.toScreenLocation(marker.getPosition());

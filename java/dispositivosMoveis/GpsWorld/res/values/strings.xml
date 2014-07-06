@@ -33,6 +33,9 @@
     <string name="text_view_about_autores">Desenvolvido p</string>
     <string name="mapa_manoel_dias">Mapa Manoel Dias</string>
     <string name="botao_zoom_out">Zoom Out</string>
-    <string name="botao_zoom_in">"Zoom In "</string>	
+    <string name="botao_zoom_in">"Zoom In "</string>
+    <string name="open_street_map_cow">Open Street Map Cow</string>
+    <string name="botao_log_salvar">Salvar</string>
+    <string name="text_view_atividades"></string>	
     
 </resources>
